@@ -15,9 +15,9 @@ public class Manager extends JPanel implements ActionListener
 	DataBase db;
 	private JLabel[] jlArray=new JLabel[]
 	{
-		new JLabel("       ¹ÜÀíÔ±Ãû"),
-		new JLabel("       È¨        ÏŞ"),
-	    new JLabel("        ÃÜ       Âë")   
+		new JLabel("       ç®¡ç†å‘˜å"),
+		new JLabel("       æƒ        é™"),
+	    new JLabel("        å¯†       ç ")   
 	};
 	private JTextField[] jtxtArray=new JTextField[]
 	{
@@ -27,35 +27,35 @@ public class Manager extends JPanel implements ActionListener
 	};
 	private JButton[] jbArray=new JButton[]
 	{
-		new JButton("Ìí¼Ó¹ÜÀíÔ±"),
-		new JButton("É¾³ı¹ÜÀíÔ±"),
-		new JButton("ĞŞ¸ÄĞÅÏ¢"),
-		new JButton("²éÕÒĞÅÏ¢")
+		new JButton("æ·»åŠ ç®¡ç†å‘˜"),
+		new JButton("åˆ é™¤ç®¡ç†å‘˜"),
+		new JButton("ä¿®æ”¹ä¿¡æ¯"),
+		new JButton("æŸ¥æ‰¾ä¿¡æ¯")
 	};
-	//´´½¨±êÌâ
+	//åˆ›å»ºæ ‡é¢˜
 	Vector<String> head=new Vector<String>();
 	{
-		head.add("¹ÜÀíÔ±Ãû");
-		head.add("È¨ÏŞ");	
-		head.add("ÃÜÂë");	
+		head.add("ç®¡ç†å‘˜å");
+		head.add("æƒé™");	
+		head.add("å¯†ç ");	
 	}
-	//ÔÚÏÂ²¿×Ó´°¿ÚÖĞÉèÖÃ±í¸ñ
+	//åœ¨ä¸‹éƒ¨å­çª—å£ä¸­è®¾ç½®è¡¨æ ¼
 	Vector<Vector> data=new Vector<Vector>();
-    //´´½¨±í¸ñÄ£ĞÍ
+    //åˆ›å»ºè¡¨æ ¼æ¨¡å‹
     DefaultTableModel dtm=new DefaultTableModel(data,head);
-    //´´½¨Jtable¶ÔÏó
+    //åˆ›å»ºJtableå¯¹è±¡
 	JTable jt=new JTable(dtm);
-	//½«JTable·â×°µ½¹ö¶¯´°¸ñ
+	//å°†JTableå°è£…åˆ°æ»šåŠ¨çª—æ ¼
 	JScrollPane jspn=new JScrollPane(jt);
 	public Manager(String mgNo)
 	{
 		this.setLayout(new GridLayout(1,1));
 	    this.mgNo=mgNo;
-		//ÉèÖÃÃæ°åµÄÉÏ²¿·ÖÎª¿Õ²¼¾Ö¹ÜÀíÆ÷
+		//è®¾ç½®é¢æ¿çš„ä¸Šéƒ¨åˆ†ä¸ºç©ºå¸ƒå±€ç®¡ç†å™¨
 		jpt.setLayout(null);
-		//ÉèÖÃjsptÖĞ·Ö¸îÌõµÄ³õÊ¼Î»ÖÃ
+		//è®¾ç½®jsptä¸­åˆ†å‰²æ¡çš„åˆå§‹ä½ç½®
 		jsp.setDividerLocation(115);
-		//ÉèÖÃ·Ö¸ôÌõµÄ¿í¶È
+		//è®¾ç½®åˆ†éš”æ¡çš„å®½åº¦
 		jsp.setDividerSize(4);
 		jsp.setTopComponent(jpt);
 		jsp.setBottomComponent(jspn);
@@ -68,16 +68,16 @@ public class Manager extends JPanel implements ActionListener
 		    jtxtArray[i].addActionListener(this);
 		}
 		this.add(jsp);
-		//ÉèÖÃÏÂ²¿×Ó´°¸ñ
+		//è®¾ç½®ä¸‹éƒ¨å­çª—æ ¼
     	jsp.setBottomComponent(jspn);
-    	//½«JButtonÌí¼Ó½øjpt,ÉèÖÃ¼àÌıÆ÷
+    	//å°†JButtonæ·»åŠ è¿›jpt,è®¾ç½®ç›‘å¬å™¨
 		for(int i=0;i<4;i++)
 		{
 			jpt.add(jbArray[i]);
 			jbArray[i].setBounds(140+120*i,70,100,25);
 			jbArray[i].addActionListener(this);
 		}
-	    //ÉèÖÃ´°ÌåµÄ´óĞ¡Î»ÖÃ¼°¿É¼ûĞÔ
+	    //è®¾ç½®çª—ä½“çš„å¤§å°ä½ç½®åŠå¯è§æ€§
 		this.setBounds(5,5,600,500);
 		this.setVisible(true);
 	}
@@ -89,8 +89,8 @@ public class Manager extends JPanel implements ActionListener
 	}
 	
 	public void actionPerformed(ActionEvent e){
-		if(e.getSource()==jtxtArray[0]){jtxtArray[1].requestFocus();}//ÉèÖÃ¼üÅÌÒ×ÓÃĞÔ			
-		if(e.getSource()==jtxtArray[1]){jtxtArray[2].requestFocus();}//ÉèÖÃ¼üÅÌÒ×ÓÃĞÔ	
+		if(e.getSource()==jtxtArray[0]){jtxtArray[1].requestFocus();}//è®¾ç½®é”®ç›˜æ˜“ç”¨æ€§			
+		if(e.getSource()==jtxtArray[1]){jtxtArray[2].requestFocus();}//è®¾ç½®é”®ç›˜æ˜“ç”¨æ€§	
 		sql="select permitted from manager where mgNo='"+mgNo+"'";
 		db=new DataBase();
 		String string="";
@@ -98,37 +98,37 @@ public class Manager extends JPanel implements ActionListener
 			int p=0;
 			if(string.equals("1")){   p++;
 				String jtxt=jtxtArray[0].getText().trim();
-				if(jtxt.equals("")){//µ±ÊäÈëÎª¿Õ£¬ÌáÊ¾
-					JOptionPane.showMessageDialog(this,	"ÇëÊäÈë¹ÜÀíÔ±Ãû£¡£¡£¡",
-						        "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);
+				if(jtxt.equals("")){//å½“è¾“å…¥ä¸ºç©ºï¼Œæç¤º
+					JOptionPane.showMessageDialog(this,	"è¯·è¾“å…¥ç®¡ç†å‘˜åï¼ï¼ï¼",
+						        "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);
 				    return;
 				}
-				if(e.getSource()==jbArray[0]){//Ö´ĞĞÌí¼Ó²Ù×÷
+				if(e.getSource()==jbArray[0]){//æ‰§è¡Œæ·»åŠ æ“ä½œ
 					this.insertManager();
 				}
-				if(e.getSource()==jbArray[1]){//Ö´ĞĞÉ¾³ı²Ù×÷
+				if(e.getSource()==jbArray[1]){//æ‰§è¡Œåˆ é™¤æ“ä½œ
 					this.deleteManager();
 				}
-				if(e.getSource()==jbArray[2]){//Ö´ĞĞĞŞ¸Ä²Ù×÷
+				if(e.getSource()==jbArray[2]){//æ‰§è¡Œä¿®æ”¹æ“ä½œ
 					this.updateManager();
 				}
-				if(e.getSource()==jbArray[3]){//Ö´ĞĞ²éÑ¯²Ù×÷
+				if(e.getSource()==jbArray[3]){//æ‰§è¡ŒæŸ¥è¯¢æ“ä½œ
 					this.selectManager();
 				}
 			}
-			if(p==0){ //ËµÃ÷¸Ã¹ÜÀíÔ±ÊÇÆÕÍ¨¹ÜÀíÔ±£¬Ã»ÓĞĞŞ¸Ä¹ÜÀíÔ±ĞÅÏ¢µÄÈ¨ÏŞ
+			if(p==0){ //è¯´æ˜è¯¥ç®¡ç†å‘˜æ˜¯æ™®é€šç®¡ç†å‘˜ï¼Œæ²¡æœ‰ä¿®æ”¹ç®¡ç†å‘˜ä¿¡æ¯çš„æƒé™
 				jtxtArray[0].requestDefaultFocus();
 				String jtxt=jtxtArray[0].getText().trim();
-				if(jtxt.equals("")){//¹ÜÀíÔ±ÃûÊäÈëÎª¿Õ£¬ÌáÊ¾
-					JOptionPane.showMessageDialog(this,	"ÇëÊäÈë¹ÜÀíÔ±Ãû£¡£¡£¡",
-						        "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);
+				if(jtxt.equals("")){//ç®¡ç†å‘˜åè¾“å…¥ä¸ºç©ºï¼Œæç¤º
+					JOptionPane.showMessageDialog(this,	"è¯·è¾“å…¥ç®¡ç†å‘˜åï¼ï¼ï¼",
+						        "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);
 				    return;
 				}
-				else if(jtxt.equals(mgNo)){//ÊäÈëÁË¹ÜÀíÔ±Ãû
-					if(e.getSource()==jbArray[3]){//Ö´ĞĞmanager1·½·¨
+				else if(jtxt.equals(mgNo)){//è¾“å…¥äº†ç®¡ç†å‘˜å
+					if(e.getSource()==jbArray[3]){//æ‰§è¡Œmanager1æ–¹æ³•
 						this.manager1();
 					}
-					if(e.getSource()==jbArray[2]){//Ö´ĞĞĞŞ¸Ä²Ù×÷
+					if(e.getSource()==jbArray[2]){//æ‰§è¡Œä¿®æ”¹æ“ä½œ
 						String str[]=new String[3];
 						int row = jt.getSelectedRow();
 						if(row>=0){
@@ -141,26 +141,26 @@ public class Manager extends JPanel implements ActionListener
 							db=new DataBase();
 							int i=0;
 							if(i==1){//
-								JOptionPane.showMessageDialog(this,"ĞŞ¸Ä³É¹¦£¡£¡",
-								                  "ÏûÏ¢!!",JOptionPane.INFORMATION_MESSAGE);
+								JOptionPane.showMessageDialog(this,"ä¿®æ”¹æˆåŠŸï¼ï¼",
+								                  "æ¶ˆæ¯!!",JOptionPane.INFORMATION_MESSAGE);
 								return;											
 							}
-							else{//²Ù×÷´íÎóÌáÊ¾
-								JOptionPane.showMessageDialog(this,"ÇëÖØĞÂ²Ù×÷£¡£¡",
+							else{//æ“ä½œé”™è¯¯æç¤º
+								JOptionPane.showMessageDialog(this,"è¯·é‡æ–°æ“ä½œï¼ï¼",
 	                                   "Warning!!",JOptionPane.INFORMATION_MESSAGE);
 								return;											
 							}
 						}
-						else{//²Ù×÷´íÎóÌáÊ¾
-							JOptionPane.showMessageDialog(this,"ÇëÖØĞÂ²Ù×÷£¡£¡",
+						else{//æ“ä½œé”™è¯¯æç¤º
+							JOptionPane.showMessageDialog(this,"è¯·é‡æ–°æ“ä½œï¼ï¼",
 	                               "Warning!!",JOptionPane.INFORMATION_MESSAGE);
 							return;								
 						}	
 					}
 				}
-				else{//ÌáÊ¾ÆÕÍ¨¹ÜÀíÔ±Ã»ÓĞµÄÈ¨ÏŞ
-					JOptionPane.showMessageDialog(this,	"Äã²»ÄÜ²é¿´±ğÈËµÄĞÅÏ¢,ÇëÖØĞÂÊäÈë£¡",
-				        "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);
+				else{//æç¤ºæ™®é€šç®¡ç†å‘˜æ²¡æœ‰çš„æƒé™
+					JOptionPane.showMessageDialog(this,	"ä½ ä¸èƒ½æŸ¥çœ‹åˆ«äººçš„ä¿¡æ¯,è¯·é‡æ–°è¾“å…¥ï¼",
+				        "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);
 				    return;					
 				}
 			}
@@ -172,59 +172,59 @@ public class Manager extends JPanel implements ActionListener
 		    str1[i]=jtxtArray[i].getText().trim();		
 		}
 		if(!str1[0].equals("")&&!str1[1].equals("")&&!str1[2].equals("")){
-			if(!str1[0].matches("^\\d+$")){//ÅĞ¶Ï¹ÜÀíÔ±ÃûµÄ¸ñÊ½
-				JOptionPane.showMessageDialog(this,	"¹ÜÀíÔ±ÃûÖ»ÄÜÎªÊı×Ö£¡£¡£¡",
-				        "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);
+			if(!str1[0].matches("^\\d+$")){//åˆ¤æ–­ç®¡ç†å‘˜åçš„æ ¼å¼
+				JOptionPane.showMessageDialog(this,	"ç®¡ç†å‘˜ååªèƒ½ä¸ºæ•°å­—ï¼ï¼ï¼",
+				        "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);
 				return;							
 			}
 			int temp = Integer.parseInt(str1[0]);			
 			sql="insert into manager(mgNo,Permitted,password) values("
-			          +temp+",'"+str1[1]+"','"+str1[2]+"')";//Ö´ĞĞ²åÈë¹¦ÄÜ
+			          +temp+",'"+str1[1]+"','"+str1[2]+"')";//æ‰§è¡Œæ’å…¥åŠŸèƒ½
 			db=new DataBase();
 			int j=0;
-			if(j==0){//ÌáÊ¾Ê§°ÜĞÅÏ¢
-				JOptionPane.showMessageDialog(this,	"²åÈëÊ§°Ü£¡£¡£¡",
-				        "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);
+			if(j==0){//æç¤ºå¤±è´¥ä¿¡æ¯
+				JOptionPane.showMessageDialog(this,	"æ’å…¥å¤±è´¥ï¼ï¼ï¼",
+				        "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);
 				return;				
 			}
 			Vector<String> v=new Vector<String>();
 		    for(int i=0;i<=2;i++){
-				v.add(str1[i]);//½«Ã¿ÁĞÌí¼Óµ½ÁÙÊ±Êı×év
+				v.add(str1[i]);//å°†æ¯åˆ—æ·»åŠ åˆ°ä¸´æ—¶æ•°ç»„v
 				if(i<3){jtxtArray[i].setText("");}	
 		    }
 		    data.add(v);
-			dtm.setDataVector(data,head);//¸üĞÂtable	
+			dtm.setDataVector(data,head);//æ›´æ–°table	
 			jt.updateUI();
 			jt.repaint();
 			return;
 		}
-		else{//ÊäÈëÎª¿ÕÊ±ÌáÊ¾
-			JOptionPane.showMessageDialog(this,	"Ñ§ÉúĞÅÏ¢²»ÄÜÎª¿Õ£¡£¡£¡",
-						        "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);
+		else{//è¾“å…¥ä¸ºç©ºæ—¶æç¤º
+			JOptionPane.showMessageDialog(this,	"å­¦ç”Ÿä¿¡æ¯ä¸èƒ½ä¸ºç©ºï¼ï¼ï¼",
+						        "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);
 						        return;	
 		}
 	}
 	public void deleteManager(){
 		String mgNo=jtxtArray[0].getText().trim();
-		if(mgNo.equals("")){//Îª¿ÕÌáÊ¾
-			JOptionPane.showMessageDialog(this,	"Ñ§ºÅ²»ÄÜÎª¿Õ£¡£¡£¡",
-						        "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);
+		if(mgNo.equals("")){//ä¸ºç©ºæç¤º
+			JOptionPane.showMessageDialog(this,	"å­¦å·ä¸èƒ½ä¸ºç©ºï¼ï¼ï¼",
+						        "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);
 			return;			
 		}
 		sql="select permitted from manager where mgNo="+Integer.parseInt(mgNo);
 		db=new DataBase();
 		String str="";
 		try{
-			if(str.equals("1")){//Êä³öÌáÊ¾ĞÅÏ¢
-	        	JOptionPane.showMessageDialog(this,	"²»ÄÜÉ¾³ı³¬¼¶¹ÜÀíÔ±ĞÅÏ¢¼ÇÂ¼£¡£¡",
-							        "¾¯¸æ",JOptionPane.INFORMATION_MESSAGE);
+			if(str.equals("1")){//è¾“å‡ºæç¤ºä¿¡æ¯
+	        	JOptionPane.showMessageDialog(this,	"ä¸èƒ½åˆ é™¤è¶…çº§ç®¡ç†å‘˜ä¿¡æ¯è®°å½•ï¼ï¼",
+							        "è­¦å‘Š",JOptionPane.INFORMATION_MESSAGE);
 	        	return;	
 			}
-			else{//Ö´ĞĞÉ¾³ı
+			else{//æ‰§è¡Œåˆ é™¤
 				sql="delete from manager where mgNo="+Integer.parseInt(mgNo);
 		    	db=new DataBase();
-	        	JOptionPane.showMessageDialog(this,	"³É¹¦É¾³ı¸Ã¹ÜÀíÔ±ĞÅÏ¢£¡£¡",
-							        "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);
+	        	JOptionPane.showMessageDialog(this,	"æˆåŠŸåˆ é™¤è¯¥ç®¡ç†å‘˜ä¿¡æ¯ï¼ï¼",
+							        "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
 	    catch(Exception e){e.printStackTrace();}	
@@ -233,27 +233,27 @@ public class Manager extends JPanel implements ActionListener
 		String str[]=new String[3];
 		int row = jt.getSelectedRow();
 		if(row>=0){
-			for(int i=0;i<3;i++){//µÃµ½ËùÑ¡ÄÚÈİ
+			for(int i=0;i<3;i++){//å¾—åˆ°æ‰€é€‰å†…å®¹
 				str[i]=jt.getValueAt(row,i).toString();
 			}
 			sql="update manager set mgNo='"+str[0]+"',permitted='"+str[1]
 			   +"',password='"+str[2]+"' where mgNo="+Integer.parseInt(str[0].trim());
 			db=new DataBase();
-			JOptionPane.showMessageDialog(this,"ĞŞ¸Ä³É¹¦£¡£¡",
-			                      "ÏûÏ¢!!",JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(this,"ä¿®æ”¹æˆåŠŸï¼ï¼",
+			                      "æ¶ˆæ¯!!",JOptionPane.INFORMATION_MESSAGE);
 			return;								
 		}
-		if(row==-1){//ÌáÊ¾
+		if(row==-1){//æç¤º
 			JOptionPane.showMessageDialog(this,
-			"Çëµã»÷'²éÕÒ'°´Å¥,ÔÚÏÂ²¿µÄ±í¸ñÀï¸ü¸Ä,ÔÙÑ¡ÖĞËù¸ÄĞĞ,µã»÷'ĞŞ¸ÄĞÅÏ¢'°´Å¥£¡",
+			"è¯·ç‚¹å‡»'æŸ¥æ‰¾'æŒ‰é’®,åœ¨ä¸‹éƒ¨çš„è¡¨æ ¼é‡Œæ›´æ”¹,å†é€‰ä¸­æ‰€æ”¹è¡Œ,ç‚¹å‡»'ä¿®æ”¹ä¿¡æ¯'æŒ‰é’®ï¼",
 			                         "Warning!!",JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}		
 	}
 	public void selectManager(){
-		if(jtxtArray[0].getText().equals("")){//ÌáÊ¾
-			JOptionPane.showMessageDialog(this,"ÊäÈë²»ÄÜÎª¿Õ£¬ÇëÖØĞÂÊäÈë£¡£¡£¡",
-			                              "ĞÅÏ¢",JOptionPane.INFORMATION_MESSAGE);
+		if(jtxtArray[0].getText().equals("")){//æç¤º
+			JOptionPane.showMessageDialog(this,"è¾“å…¥ä¸èƒ½ä¸ºç©ºï¼Œè¯·é‡æ–°è¾“å…¥ï¼ï¼ï¼",
+			                              "ä¿¡æ¯",JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
 		int q=Integer.parseInt(jtxtArray[0].getText().trim());
@@ -271,9 +271,9 @@ public class Manager extends JPanel implements ActionListener
 		     int k=0;
 			 Vector<Vector> vtemp = new Vector<Vector>();
 			 
-			 if(k==0){//Èômanager±íÖĞÃ»ÓĞ¸Ã¹ÜÀíÔ±ºÅ£¬ÔòÊä³öÌáÊ¾¶Ô»°¿ò
-			 	 JOptionPane.showMessageDialog(this,"Ã»ÓĞÄúÒª²éÕÒµÄÄÚÈİ",
-				                 "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);
+			 if(k==0){//è‹¥managerè¡¨ä¸­æ²¡æœ‰è¯¥ç®¡ç†å‘˜å·ï¼Œåˆ™è¾“å‡ºæç¤ºå¯¹è¯æ¡†
+			 	 JOptionPane.showMessageDialog(this,"æ²¡æœ‰æ‚¨è¦æŸ¥æ‰¾çš„å†…å®¹",
+				                 "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);
 			 }
 			dtm.setDataVector(vtemp,head);
 			jt.updateUI();

@@ -8,95 +8,95 @@ import org.w3c.dom.*;
 import java.io.*;
 import java.net.*;
 public class StudentSystem extends JFrame implements ActionListener{
-	DefaultMutableTreeNode[] dmtn={//´´½¨½ÚµãÊı×é
-		new DefaultMutableTreeNode(new NodeValue("Ñ§ÉúÓÃ»§¹ÜÀíÏµÍ³")),
-	    new DefaultMutableTreeNode(new NodeValue("²éÑ¯Í¼Êé")),
-	    new DefaultMutableTreeNode(new NodeValue("Ô¤Ô¼Í¼Êé")),
-	    new DefaultMutableTreeNode(new NodeValue("¹ÒÊ§Í¼Êé")),
-	    new DefaultMutableTreeNode(new NodeValue("ÍË³ö"))
+	DefaultMutableTreeNode[] dmtn={//åˆ›å»ºèŠ‚ç‚¹æ•°ç»„
+		new DefaultMutableTreeNode(new NodeValue("å­¦ç”Ÿç”¨æˆ·ç®¡ç†ç³»ç»Ÿ")),
+	    new DefaultMutableTreeNode(new NodeValue("æŸ¥è¯¢å›¾ä¹¦")),
+	    new DefaultMutableTreeNode(new NodeValue("é¢„çº¦å›¾ä¹¦")),
+	    new DefaultMutableTreeNode(new NodeValue("æŒ‚å¤±å›¾ä¹¦")),
+	    new DefaultMutableTreeNode(new NodeValue("é€€å‡º"))
 	};
-    DefaultTreeModel dtm=new DefaultTreeModel(dmtn[0]);//´´½¨Ê÷Ä£ĞÍ£¬Ö¸¶¨¸ù½ÚµãÎª"Ñ§Éú¹ÜÀíÏµÍ³"
-    JTree jt=new JTree(dtm);    //´´½¨°üº¬dtmÊ÷Ä£ĞÍµÄJTree¶ÔÏó
-    JScrollPane jsp=new JScrollPane(jt);    //ÎªJTree´´½¨¹ö¶¯´°Ìå    
-    private JSplitPane jsplr=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,true); //·Ö¸î·½ÏòÎªÉÏÏÂ·½Ïò
+    DefaultTreeModel dtm=new DefaultTreeModel(dmtn[0]);//åˆ›å»ºæ ‘æ¨¡å‹ï¼ŒæŒ‡å®šæ ¹èŠ‚ç‚¹ä¸º"å­¦ç”Ÿç®¡ç†ç³»ç»Ÿ"
+    JTree jt=new JTree(dtm);    //åˆ›å»ºåŒ…å«dtmæ ‘æ¨¡å‹çš„JTreeå¯¹è±¡
+    JScrollPane jsp=new JScrollPane(jt);    //ä¸ºJTreeåˆ›å»ºæ»šåŠ¨çª—ä½“    
+    private JSplitPane jsplr=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,true); //åˆ†å‰²æ–¹å‘ä¸ºä¸Šä¸‹æ–¹å‘
     Image image=new ImageIcon("tsgl.jpg").getImage();
     ImageIcon ii = new ImageIcon(image);    
-    private JLabel jlRoot=new JLabel(ii);//±êÇ©ÎÄ±¾×Ô¶¯¾ÓÖĞ
-    private JPanel jp=new JPanel();    //´´½¨JPanel¶ÔÏó
-	CardLayout cl=new CardLayout();	//»ñÈ¡¿¨Æ¬²¼¾Ö¹ÜÀíÆ÷ÒıÓÃ
+    private JLabel jlRoot=new JLabel(ii);//æ ‡ç­¾æ–‡æœ¬è‡ªåŠ¨å±…ä¸­
+    private JPanel jp=new JPanel();    //åˆ›å»ºJPanelå¯¹è±¡
+	CardLayout cl=new CardLayout();	//è·å–å¡ç‰‡å¸ƒå±€ç®¡ç†å™¨å¼•ç”¨
 	public StudentSystem(){
        	this.initJp();
-    	jt.addTreeSelectionListener(new TreeSelectionListener(){//ÓÃÄÚ²¿ÀàÏÔÊ¾Ê÷µÄ¸÷Ñ¡Ôñ½Úµã
+    	jt.addTreeSelectionListener(new TreeSelectionListener(){//ç”¨å†…éƒ¨ç±»æ˜¾ç¤ºæ ‘çš„å„é€‰æ‹©èŠ‚ç‚¹
 			public void valueChanged(TreeSelectionEvent e){
 				DefaultMutableTreeNode cdmtn=
 					(DefaultMutableTreeNode)e.getPath().getLastPathComponent();
 				NodeValue cnv=(NodeValue)cdmtn.getUserObject();	
-				if(cnv.value.equals("Ñ§ÉúÓÃ»§¹ÜÀíÏµÍ³")){
-					cl.show(jp,"root");//ÏÔÊ¾Ö÷½çÃæ
+				if(cnv.value.equals("å­¦ç”Ÿç”¨æˆ·ç®¡ç†ç³»ç»Ÿ")){
+					cl.show(jp,"root");//æ˜¾ç¤ºä¸»ç•Œé¢
 				}
-				if(cnv.value.equals("²éÑ¯Í¼Êé")){													
-					cl.show(jp,"ts");//ÏÔÊ¾"²éÑ¯Í¼Êé"½çÃæ
+				if(cnv.value.equals("æŸ¥è¯¢å›¾ä¹¦")){													
+					cl.show(jp,"ts");//æ˜¾ç¤º"æŸ¥è¯¢å›¾ä¹¦"ç•Œé¢
 				}
-				else if(cnv.value.equals("Ô¤Ô¼Í¼Êé")){
-					cl.show(jp,"OrderBook");//ÏÔÊ¾"Ô¤Ô¼Í¼Êé"½çÃæ
+				else if(cnv.value.equals("é¢„çº¦å›¾ä¹¦")){
+					cl.show(jp,"OrderBook");//æ˜¾ç¤º"é¢„çº¦å›¾ä¹¦"ç•Œé¢
 				}
-				else if(cnv.value.equals("¹ÒÊ§Í¼Êé")){
-					cl.show(jp,"GuaShi");//ÏÔÊ¾"¹é»¹¹ÒÊ§Í¼Êé"½çÃæ
+				else if(cnv.value.equals("æŒ‚å¤±å›¾ä¹¦")){
+					cl.show(jp,"GuaShi");//æ˜¾ç¤º"å½’è¿˜æŒ‚å¤±å›¾ä¹¦"ç•Œé¢
 				}
-				else if(cnv.value.equals("ÍË³ö")){//ÓÃÑ¡Ôñ²Ëµ¥ÌáÊ¾ÊÇ·ñÍË³öÏµÍ³
+				else if(cnv.value.equals("é€€å‡º")){//ç”¨é€‰æ‹©èœå•æç¤ºæ˜¯å¦é€€å‡ºç³»ç»Ÿ
 					int i=JOptionPane.showConfirmDialog(StudentSystem.this,
-									"ÊÇ·ñÍË³öÏµÍ³?","ÏûÏ¢",JOptionPane.YES_NO_OPTION);
+									"æ˜¯å¦é€€å‡ºç³»ç»Ÿ?","æ¶ˆæ¯",JOptionPane.YES_NO_OPTION);
 					if(i==JOptionPane.YES_OPTION){System.exit(0);}						
 				}									
 			}
 		});
-    	for(int i=1;i<dmtn.length;i++){//Ïò¸ù½ÚµãÌí¼Ó×Ó½Úµã
+    	for(int i=1;i<dmtn.length;i++){//å‘æ ¹èŠ‚ç‚¹æ·»åŠ å­èŠ‚ç‚¹
     		dtm.insertNodeInto(dmtn[i],dmtn[0],i-1);	
     	}
-		jt.setEditable(false);//ÉèÖÃ¸ÃÊ÷ÖĞ½ÚµãÊÇ²»¿É±à¼­µÄ
-		this.add(jsplr);//½«°üº¬Ê÷µÄ¹ö¶¯´°¿ÚÌí¼Ó½ø´°Ìå
-		jsplr.setLeftComponent(jt);//½«°üº¬Ê÷µÄ¹ö¶¯´°¿ÚÌí¼Ó½ø×ó±ßµÄ×Ó´°¿Ú
-		//ÎªjpÉèÖÃ´óĞ¡Î»ÖÃ²¢Ìí¼Ó½øÓÒ±ßµÄ×Ó´°¿Ú
+		jt.setEditable(false);//è®¾ç½®è¯¥æ ‘ä¸­èŠ‚ç‚¹æ˜¯ä¸å¯ç¼–è¾‘çš„
+		this.add(jsplr);//å°†åŒ…å«æ ‘çš„æ»šåŠ¨çª—å£æ·»åŠ è¿›çª—ä½“
+		jsplr.setLeftComponent(jt);//å°†åŒ…å«æ ‘çš„æ»šåŠ¨çª—å£æ·»åŠ è¿›å·¦è¾¹çš„å­çª—å£
+		//ä¸ºjpè®¾ç½®å¤§å°ä½ç½®å¹¶æ·»åŠ è¿›å³è¾¹çš„å­çª—å£
 		jp.setBounds(200,50,300,400);
 		jsplr.setRightComponent(jp);
-        jsplr.setDividerLocation(150);//ÉèÖÃ·Ö¸ôÌõµÄ³õÊ¼Î»ÖÃ
-        jsplr.setDividerSize(4); //ÉèÖÃ·Ö¸ôÌõµÄ¿í¶È
+        jsplr.setDividerLocation(150);//è®¾ç½®åˆ†éš”æ¡çš„åˆå§‹ä½ç½®
+        jsplr.setDividerSize(4); //è®¾ç½®åˆ†éš”æ¡çš„å®½åº¦
         jlRoot.setFont(new Font("Courier",Font.PLAIN,30));
 		jlRoot.setHorizontalAlignment(JLabel.CENTER);
 		jlRoot.setVerticalAlignment(JLabel.CENTER);
-		//ÉèÖÃ´°ÌåµÄ¹Ø±Õ¶¯×÷£¬±êÌâ£¬´óĞ¡£¬Î»ÖÃ¼°¿É¼ûĞÔ
+		//è®¾ç½®çª—ä½“çš„å…³é—­åŠ¨ä½œï¼Œæ ‡é¢˜ï¼Œå¤§å°ï¼Œä½ç½®åŠå¯è§æ€§
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//¶Ô±êÌâºÍlogoÍ¼Æ¬½øĞĞ³õÊ¼»¯	
+		//å¯¹æ ‡é¢˜å’Œlogoå›¾ç‰‡è¿›è¡Œåˆå§‹åŒ–	
  		Image image=new ImageIcon("ico.gif").getImage();
  		this.setIconImage(image);
-		this.setTitle("Ñ§Éú¹ÜÀíÏµÍ³");
-		//ÉèÖÃ´°ÌåÊ×´Î³öÏÖµÄ´óĞ¡ºÍÎ»ÖÃ--×Ô¶¯¾ÓÖĞ
+		this.setTitle("å­¦ç”Ÿç®¡ç†ç³»ç»Ÿ");
+		//è®¾ç½®çª—ä½“é¦–æ¬¡å‡ºç°çš„å¤§å°å’Œä½ç½®--è‡ªåŠ¨å±…ä¸­
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int centerX=screenSize.width/2;
 		int centerY=screenSize.height/2;
-		int w=500;//±¾´°Ìå¿í¶È
-		int h=400;//±¾´°Ìå¸ß¶È
-		this.setBounds(centerX-w/2,centerY-h/2-100,w,h);//ÉèÖÃ´°Ìå³öÏÖÔÚÆÁÄ»ÖĞÑë
-		this.setExtendedState(JFrame.MAXIMIZED_BOTH);//´°ÌåÈ«ÆÁ
+		int w=500;//æœ¬çª—ä½“å®½åº¦
+		int h=400;//æœ¬çª—ä½“é«˜åº¦
+		this.setBounds(centerX-w/2,centerY-h/2-100,w,h);//è®¾ç½®çª—ä½“å‡ºç°åœ¨å±å¹•ä¸­å¤®
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH);//çª—ä½“å…¨å±
 		this.setVisible(true);
-		jt.setShowsRootHandles(true);//ÉèÖÃÏÔÊ¾¸ù½ÚµãµÄ¿ØÖÆÍ¼±ê
+		jt.setShowsRootHandles(true);//è®¾ç½®æ˜¾ç¤ºæ ¹èŠ‚ç‚¹çš„æ§åˆ¶å›¾æ ‡
     }
-    public void initJp(){//¶ÔËùÒıÓÃµÄ·½·¨½øĞĞÉùÃ÷
+    public void initJp(){//å¯¹æ‰€å¼•ç”¨çš„æ–¹æ³•è¿›è¡Œå£°æ˜
     	jp.setLayout(cl);
     	jp.add(jlRoot,"root");
     	jp.add(new SearchBook(),"ts");
     	jp.add(new OrderBook(),"OrderBook");
     	jp.add(new GuaShi(),"GuaShi");
     }
-    public void actionPerformed(ActionEvent e){}//ÊµÏÖActionListener·½·¨
+    public void actionPerformed(ActionEvent e){}//å®ç°ActionListeneræ–¹æ³•
 	public static void main(String[]args){new StudentSystem();}
 }
-class NodeValue{//ÉùÃ÷NodeValueÀà
+class NodeValue{//å£°æ˜NodeValueç±»
 	String value;
 	public NodeValue(String value){
 		this.value=value;
 	}
-	public String getValue(){//ÉùÃ÷NodeValue¹¹ÔìÆ÷
+	public String getValue(){//å£°æ˜NodeValueæ„é€ å™¨
 		return this.value;
 	}
 	public String toString(){

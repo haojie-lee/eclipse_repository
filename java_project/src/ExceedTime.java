@@ -8,107 +8,107 @@ import java.util.*;
 import java.util.Date;
 public class ExceedTime extends JPanel implements ActionListener
 {
-	private JLabel jl=new JLabel("ÇëÊäÈëÄúµÄÑ§ºÅ");
-	private JTextField jtf=new JTextField();//´´½¨ÎÄ±¾¿ò
-	private JLabel jl1=new JLabel("ÇëÊäÈëÄúÒª½»µÄ¿îÊı");
+	private JLabel jl=new JLabel("è¯·è¾“å…¥æ‚¨çš„å­¦å·");
+	private JTextField jtf=new JTextField();//åˆ›å»ºæ–‡æœ¬æ¡†
+	private JLabel jl1=new JLabel("è¯·è¾“å…¥æ‚¨è¦äº¤çš„æ¬¾æ•°");
 	private JTextField jtf1=new JTextField();
-	//´´½¨°´Å¥
-	private JButton jb=new JButton("½»·Ñ");
-	private JButton jb1=new JButton("²éÑ¯Ç··Ñ");
+	//åˆ›å»ºæŒ‰é’®
+	private JButton jb=new JButton("äº¤è´¹");
+	private JButton jb1=new JButton("æŸ¥è¯¢æ¬ è´¹");
 	public ExceedTime()
 	{
-		this.setLayout(null);//ÉèÖÃ²¼¾ÖÎª¿Õ²¼¾Ö
-		this.add(jl);//½«JLabelÌí¼Ó½øJPanel
-		this.add(jtf);//½«JTextFieldÌí¼Ó½øJPanel
+		this.setLayout(null);//è®¾ç½®å¸ƒå±€ä¸ºç©ºå¸ƒå±€
+		this.add(jl);//å°†JLabelæ·»åŠ è¿›JPanel
+		this.add(jtf);//å°†JTextFieldæ·»åŠ è¿›JPanel
 		this.add(jl1);
-		this.add(jtf1);//½«JTextFieldÌí¼Ó½øJPanel
-		//½«JButtonÌí¼Ó½øJPanel
+		this.add(jtf1);//å°†JTextFieldæ·»åŠ è¿›JPanel
+		//å°†JButtonæ·»åŠ è¿›JPanel
 		this.add(jb);
 		this.add(jb1);
-		//·Ö±ğÉèÖÃJLabel,JTextField,JButtonµÄ´óĞ¡Î»ÖÃ
+		//åˆ†åˆ«è®¾ç½®JLabel,JTextField,JButtonçš„å¤§å°ä½ç½®
 		jl.setBounds(50,30,120,20);
 		jtf.setBounds(170,30,120,20);
 		jl1.setBounds(50,70,120,20);
 		jtf1.setBounds(170,70,120,20);
 		jb.setBounds(180,110,100,25);
-		//Îª°´Å¥Ìí¼ÓÊÂ¼ş¼àÌıÆ÷
+		//ä¸ºæŒ‰é’®æ·»åŠ äº‹ä»¶ç›‘å¬å™¨
 		jb.addActionListener(this);
 		jb1.addActionListener(this);
 		jb1.setBounds(50,110,100,25);
-		//ÉèÖÃ´°ÌåµÄ´óĞ¡Î»ÖÃ
+		//è®¾ç½®çª—ä½“çš„å¤§å°ä½ç½®
         this.setBounds(300,300,600,650);
         this.setVisible(true);
 	}
-	//ÎªÊÂ¼ş¼ÓÔØµÄ¼àÌıÆ÷¼ÓÉÏ´¦ÀíÊÂ¼ş
+	//ä¸ºäº‹ä»¶åŠ è½½çš„ç›‘å¬å™¨åŠ ä¸Šå¤„ç†äº‹ä»¶
    	public void actionPerformed(ActionEvent e)
 	{
-		int day=0;//³õÊ¼»¯ÌìÊı±äÁ¿
+		int day=0;//åˆå§‹åŒ–å¤©æ•°å˜é‡
 		DataBase db=new DataBase();
-		String sno=(String)jtf.getText().trim();//¶¨ÒåÎÄ±¾¿òÄÚÈİ±äÁ¿
-		if(sno.equals("")){//Èç¹ûÊäÈëÑ§ºÅÎª¿Õ½øĞĞÌáÊ¾
-			JOptionPane.showMessageDialog(this,"Ñ§ºÅ²»ÄÜÎª¿Õ!!!",
-			                "ĞÅÏ¢",JOptionPane.INFORMATION_MESSAGE);
+		String sno=(String)jtf.getText().trim();//å®šä¹‰æ–‡æœ¬æ¡†å†…å®¹å˜é‡
+		if(sno.equals("")){//å¦‚æœè¾“å…¥å­¦å·ä¸ºç©ºè¿›è¡Œæç¤º
+			JOptionPane.showMessageDialog(this,"å­¦å·ä¸èƒ½ä¸ºç©º!!!",
+			                "ä¿¡æ¯",JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
-		if(sno.matches("\\D")){//¶¨ÒåÑ§ºÅ¸ñÊ½ÎªÊı×Ö×éºÏ
-			JOptionPane.showMessageDialog(this,"Ñ§ºÅÖ»ÄÜÎªÊı×Ö!!!",
-			                   "ĞÅÏ¢",JOptionPane.INFORMATION_MESSAGE);
+		if(sno.matches("\\D")){//å®šä¹‰å­¦å·æ ¼å¼ä¸ºæ•°å­—ç»„åˆ
+			JOptionPane.showMessageDialog(this,"å­¦å·åªèƒ½ä¸ºæ•°å­—!!!",
+			                   "ä¿¡æ¯",JOptionPane.INFORMATION_MESSAGE);
 			return;			
 		}
 		String sql="select DelayTime from EXCEEDTIME where StuNO="
 		           +Integer.parseInt(sno);
-		try{//¶Ô½á¹û¼¯½øĞĞÒì³£´¦Àí
+		try{//å¯¹ç»“æœé›†è¿›è¡Œå¼‚å¸¸å¤„ç†
 			int flag=0;
-			if(flag==0){//½á¹û¼¯Îª¿Õ¸ø³öÌáÊ¾
-				JOptionPane.showMessageDialog(this,"ÄúËù½èµÄÊéÃ»ÓĞ³¬ÆÚ£¬²»ĞèÒª»¹¿î£¡£¡",
-				                             "ĞÅÏ¢",JOptionPane.INFORMATION_MESSAGE);
+			if(flag==0){//ç»“æœé›†ä¸ºç©ºç»™å‡ºæç¤º
+				JOptionPane.showMessageDialog(this,"æ‚¨æ‰€å€Ÿçš„ä¹¦æ²¡æœ‰è¶…æœŸï¼Œä¸éœ€è¦è¿˜æ¬¾ï¼ï¼",
+				                             "ä¿¡æ¯",JOptionPane.INFORMATION_MESSAGE);
 				return;
 			}	
 		}
 		catch(Exception ex){ex.printStackTrace();}
-		if(e.getSource()==jb1){//ÊÂ¼şÔ´Îª"²éÑ¯Ç·¿î"°´Å¥
-    		if(day>0){//ÌáÊ¾Ç·¿îÊı
-    			JOptionPane.showMessageDialog(this,"ÄúÇ··Ñ"+day*0.1+"Ôª£¡",
-		                                 "ĞÅÏ¢",JOptionPane.INFORMATION_MESSAGE);
+		if(e.getSource()==jb1){//äº‹ä»¶æºä¸º"æŸ¥è¯¢æ¬ æ¬¾"æŒ‰é’®
+    		if(day>0){//æç¤ºæ¬ æ¬¾æ•°
+    			JOptionPane.showMessageDialog(this,"æ‚¨æ¬ è´¹"+day*0.1+"å…ƒï¼",
+		                                 "ä¿¡æ¯",JOptionPane.INFORMATION_MESSAGE);
 		      return;
     		}
-    		else{//Èç¹ûÃ»ÓĞÇ·¿î£¬ÌáÊ¾
-    			JOptionPane.showMessageDialog(this,"ÄúËù½èµÄÊéÃ»ÓĞ³¬ÆÚ£¬²»ĞèÒª»¹¿î£¡£¡",
-			                               "ĞÅÏ¢",JOptionPane.INFORMATION_MESSAGE);
+    		else{//å¦‚æœæ²¡æœ‰æ¬ æ¬¾ï¼Œæç¤º
+    			JOptionPane.showMessageDialog(this,"æ‚¨æ‰€å€Ÿçš„ä¹¦æ²¡æœ‰è¶…æœŸï¼Œä¸éœ€è¦è¿˜æ¬¾ï¼ï¼",
+			                               "ä¿¡æ¯",JOptionPane.INFORMATION_MESSAGE);
 			return;
     		}
     	}
-		else if(e.getSource()==jb){//ÊÂ¼şÔ´Îª"½»·Ñ"°´Å¥
-			if(jtf1.getText().trim().equals("")){//½É·Ñ½ğ¶îÎª¿ÕµÄÌáÊ¾
-				JOptionPane.showMessageDialog(this,"ÇëÊäÈë½É¿î½ğ¶î£¡£¡",
-										"ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);
+		else if(e.getSource()==jb){//äº‹ä»¶æºä¸º"äº¤è´¹"æŒ‰é’®
+			if(jtf1.getText().trim().equals("")){//ç¼´è´¹é‡‘é¢ä¸ºç©ºçš„æç¤º
+				JOptionPane.showMessageDialog(this,"è¯·è¾“å…¥ç¼´æ¬¾é‡‘é¢ï¼ï¼",
+										"æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);
 				return;
 			}
-			int k=JOptionPane.showConfirmDialog(this,"ÊÇ·ñ½É·Ñ?",
-							"ÏûÏ¢",JOptionPane.YES_NO_OPTION);
-			if(k==JOptionPane.YES_OPTION){//Ñ¡Ôñ¶Ô»°¿ò£¬µ±Ñ¡Ôñ"ÊÇ"Ê±£¬½«ÌáÊ¾²Ù×÷²½Öè
+			int k=JOptionPane.showConfirmDialog(this,"æ˜¯å¦ç¼´è´¹?",
+							"æ¶ˆæ¯",JOptionPane.YES_NO_OPTION);
+			if(k==JOptionPane.YES_OPTION){//é€‰æ‹©å¯¹è¯æ¡†ï¼Œå½“é€‰æ‹©"æ˜¯"æ—¶ï¼Œå°†æç¤ºæ“ä½œæ­¥éª¤
 				int ii=Integer.parseInt(jtf1.getText().trim());		
 				if(ii<(day*0.1)){
 					sql="update exceedtime set delaytime=delaytime-"+ii/0.1+" where stuNO="+Integer.parseInt(sno);
 					db=new DataBase();
 					int i=5;
-					if(i==1){//Êä³ö»¹Ó¦¸Ã½É·ÑÊıµÄÌáÊ¾
-						JOptionPane.showMessageDialog(this,"ÄãÒÑ³É¹¦½»·Ñ"+ii+"Ôª,Äú»¹Ğè½ÉÄÉ"+(day*0.1-ii)+"Ôª",
-											"ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);
+					if(i==1){//è¾“å‡ºè¿˜åº”è¯¥ç¼´è´¹æ•°çš„æç¤º
+						JOptionPane.showMessageDialog(this,"ä½ å·²æˆåŠŸäº¤è´¹"+ii+"å…ƒ,æ‚¨è¿˜éœ€ç¼´çº³"+(day*0.1-ii)+"å…ƒ",
+											"æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);
 					      return;					
 					}
-					else{//Ñ¡Ôñ"·ñ"£¬ÌáÊ¾½É·ÑÊ§°Ü
-						JOptionPane.showMessageDialog(this,"¶Ô²»Æğ£¬½É·ÑÊ§°Ü!!!",
-											"ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);
+					else{//é€‰æ‹©"å¦"ï¼Œæç¤ºç¼´è´¹å¤±è´¥
+						JOptionPane.showMessageDialog(this,"å¯¹ä¸èµ·ï¼Œç¼´è´¹å¤±è´¥!!!",
+											"æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);
 					      return;					
 					}
 				}
-			    else{//ÌáÊ¾½É·Ñ³É¹¦
-			      	JOptionPane.showMessageDialog(this,"ÄãÒÑ³É¹¦½»·Ñ"+day*0.1+"Ôª",
-										"ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);
+			    else{//æç¤ºç¼´è´¹æˆåŠŸ
+			      	JOptionPane.showMessageDialog(this,"ä½ å·²æˆåŠŸäº¤è´¹"+day*0.1+"å…ƒ",
+										"æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);
 					jtf.setText("");
 					sql="delete from EXCEEDTIME where StuNO="+Integer.parseInt(sno);
-									sql="update STUDENT set Permitted='ÊÇ' where StuNO="+Integer.parseInt(sno);
+									sql="update STUDENT set Permitted='æ˜¯' where StuNO="+Integer.parseInt(sno);
 				}
 			}			 
 		}}}

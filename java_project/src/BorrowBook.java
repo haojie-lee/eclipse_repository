@@ -6,55 +6,55 @@ import java.sql.*;
 import java.util.*;
 import java.util.Date;
 public class BorrowBook extends JPanel implements ActionListener{
-	//´´½¨·Ö¸î·½ÏòÎªÉÏÏÂµÄJSplitePane¶ÔÏó
+	//åˆ›å»ºåˆ†å‰²æ–¹å‘ä¸ºä¸Šä¸‹çš„JSplitePaneå¯¹è±¡
       private JSplitPane jsp1=new JSplitPane(JSplitPane.VERTICAL_SPLIT,true);
 	private JPanel jp2=new JPanel();
-	//´´½¨°´Å¥Êı×é
+	//åˆ›å»ºæŒ‰é’®æ•°ç»„
 	int flag;
 	String sql;
 	DataBase db;
-	private JButton jb2=new JButton("È·¶¨");
-	private JLabel jl3=new JLabel("ÄúÒª½èÔÄ»òÔ¤Ô¼µÄÊéºÅ");
-	private JLabel jl4=new JLabel("ÇëÊäÈëÄúµÄÑ§ºÅ");
-	//ÔÚjsp1Ìí¼ÓÎÄ±¾¿ò
+	private JButton jb2=new JButton("ç¡®å®š");
+	private JLabel jl3=new JLabel("æ‚¨è¦å€Ÿé˜…æˆ–é¢„çº¦çš„ä¹¦å·");
+	private JLabel jl4=new JLabel("è¯·è¾“å…¥æ‚¨çš„å­¦å·");
+	//åœ¨jsp1æ·»åŠ æ–‡æœ¬æ¡†
 	private JTextField jtxt3=new JTextField();
 	private JTextField jtxt4=new JTextField();
-	//ÔÚjp2ÉèÖÃµ¥Ñ¡¿ò
+	//åœ¨jp2è®¾ç½®å•é€‰æ¡†
 	private JRadioButton[] jrbArray=
-    {new JRadioButton("½èÔÄÍ¼Êé",true),new JRadioButton("Ô¤Ô¼Í¼Êé")};
+    {new JRadioButton("å€Ÿé˜…å›¾ä¹¦",true),new JRadioButton("é¢„çº¦å›¾ä¹¦")};
     private ButtonGroup bg=new ButtonGroup();
-	Vector<String> head = new Vector<String>();	//´´½¨±êÌâ
+	Vector<String> head = new Vector<String>();	//åˆ›å»ºæ ‡é¢˜
 	{
-		head.add("ÊéºÅ");
-		head.add("ÊéÃû");
-		head.add("×÷Õß");
-		head.add("³ö°æÉç");
-		head.add("ÊÇ·ñ½èÔÄ");
-		head.add("ÊÇ·ñÔ¤Ô¼");
+		head.add("ä¹¦å·");
+		head.add("ä¹¦å");
+		head.add("ä½œè€…");
+		head.add("å‡ºç‰ˆç¤¾");
+		head.add("æ˜¯å¦å€Ÿé˜…");
+		head.add("æ˜¯å¦é¢„çº¦");
 	}	
-	Vector<Vector> data=new Vector<Vector>();//±í¸ñÊı¾İÏòÁ¿¼¯ºÏ    
-    DefaultTableModel dtm=new DefaultTableModel(data,head);//´´½¨±í¸ñÄ£ĞÍ   
-	JTable jt=new JTable(dtm); //´´½¨Jtable¶ÔÏó	
-	JScrollPane jspn=new JScrollPane(jt);//½«JTable·Å½ø¹ö¶¯´°Ìå
+	Vector<Vector> data=new Vector<Vector>();//è¡¨æ ¼æ•°æ®å‘é‡é›†åˆ    
+    DefaultTableModel dtm=new DefaultTableModel(data,head);//åˆ›å»ºè¡¨æ ¼æ¨¡å‹   
+	JTable jt=new JTable(dtm); //åˆ›å»ºJtableå¯¹è±¡	
+	JScrollPane jspn=new JScrollPane(jt);//å°†JTableæ”¾è¿›æ»šåŠ¨çª—ä½“
     public BorrowBook()
     {
     	this.setLayout(new GridLayout(1,1));
-    	//°Ñjsp2ÉèÖÃµ½jsp1µÄÉÏ²¿´°¸ñ
+    	//æŠŠjsp2è®¾ç½®åˆ°jsp1çš„ä¸Šéƒ¨çª—æ ¼
     	jsp1.setTopComponent(jp2);
-    	//ÉèÖÃjsp1µÄÏÂ²¿´°¸ñ
+    	//è®¾ç½®jsp1çš„ä¸‹éƒ¨çª—æ ¼
     	jsp1.setBottomComponent(jspn);
-    	//ÉèÖÃjsp1£¬jsp2ÖĞ·Ö¸îÌõµÄ³õÊ¼Î»ÖÃ
-    	jsp1.setDividerLocation(100);//ÉèÖÃ·Ö¸î¿Ø¼şÎ»ÖÃ
-    	jsp1.setDividerSize(4);//ÉèÖÃ·Ö¸î¿Ø¼ş¿í¶È
+    	//è®¾ç½®jsp1ï¼Œjsp2ä¸­åˆ†å‰²æ¡çš„åˆå§‹ä½ç½®
+    	jsp1.setDividerLocation(100);//è®¾ç½®åˆ†å‰²æ§ä»¶ä½ç½®
+    	jsp1.setDividerSize(4);//è®¾ç½®åˆ†å‰²æ§ä»¶å®½åº¦
     	jp2.setLayout(null);    	
-		jb2.setBounds(380,20,100,20);//ÉèÖÃ°´Å¥µÄ´óĞ¡ÓëÎ»ÖÃ
-    	//½«°´Å¥Ìí¼Ó½øJPanel
+		jb2.setBounds(380,20,100,20);//è®¾ç½®æŒ‰é’®çš„å¤§å°ä¸ä½ç½®
+    	//å°†æŒ‰é’®æ·»åŠ è¿›JPanel
 		jp2.add(jb2);
 		jb2.addActionListener(this);
-		//ÉèÖÃJLabelµÄ×ø±ê
+		//è®¾ç½®JLabelçš„åæ ‡
     	jl3.setBounds(80,60,130,20);
     	jl4.setBounds(330,60,100,20);
-    	//°ÑJLabelÌí¼Ó½øJPanel
+    	//æŠŠJLabelæ·»åŠ è¿›JPanel
     	jp2.add(jl3);
     	jp2.add(jl4);	
     	jtxt3.setBounds(220,60,100,20);
@@ -68,30 +68,30 @@ public class BorrowBook extends JPanel implements ActionListener{
     		bg.add(jrbArray[i]);
     	}
     	this.add(jsp1);
-    	//ÉèÖÃ´°ÌåµÄ±êÌâ£¬´óĞ¡Î»ÖÃ¼°¿É¼ûĞÔ
+    	//è®¾ç½®çª—ä½“çš„æ ‡é¢˜ï¼Œå¤§å°ä½ç½®åŠå¯è§æ€§
         this.setBounds(10,10,800,600);
         this.setVisible(true);  
     }	
-    //ÎªÊÂ¼ş¼ÓÔØµÄ¼àÌıÆ÷¼ÓÉÏ´¦ÀíÊÂ¼ş
+    //ä¸ºäº‹ä»¶åŠ è½½çš„ç›‘å¬å™¨åŠ ä¸Šå¤„ç†äº‹ä»¶
 	public void actionPerformed(ActionEvent e){
 		if(e.getSource()==jb2){
-			if(jtxt4.getText().equals("")){//ÎªÊäÈëÎª¿ÕµÄÇé¿ö½øĞĞ´¦Àí
-				JOptionPane.showMessageDialog(this,"ÊäÈë²»ÄÜÎª¿Õ£¬ÇëÖØĞÂÊäÈë£¡£¡£¡",
-				                      "ĞÅÏ¢",JOptionPane.INFORMATION_MESSAGE);
+			if(jtxt4.getText().equals("")){//ä¸ºè¾“å…¥ä¸ºç©ºçš„æƒ…å†µè¿›è¡Œå¤„ç†
+				JOptionPane.showMessageDialog(this,"è¾“å…¥ä¸èƒ½ä¸ºç©ºï¼Œè¯·é‡æ–°è¾“å…¥ï¼ï¼ï¼",
+				                      "ä¿¡æ¯",JOptionPane.INFORMATION_MESSAGE);
 				return;
 			}
-			//²éÑ¯Ñ§ºÅÎÄ±¾ÖĞËùÊäÑ§ºÅÊÇ·ñ´æÔÚÓÚSTUDENT±íÖĞ
+			//æŸ¥è¯¢å­¦å·æ–‡æœ¬ä¸­æ‰€è¾“å­¦å·æ˜¯å¦å­˜åœ¨äºSTUDENTè¡¨ä¸­
            	sql="select * from STUDENT where StuNO="+Integer.parseInt(jtxt4.getText().trim());
             db=new DataBase();
 			Vector<Vector> vtemp = new Vector<Vector>();
 			
 				if(true){
-					JOptionPane.showMessageDialog(this,"ÊäÈëÁË´íÎóµÄÑ§ºÅ","ÏûÏ¢",
+					JOptionPane.showMessageDialog(this,"è¾“å…¥äº†é”™è¯¯çš„å­¦å·","æ¶ˆæ¯",
 					                              JOptionPane.INFORMATION_MESSAGE);
 				}
 				else{
 										
-						JOptionPane.showMessageDialog(this,"Ñ§ºÅÕıÈ·","ÏûÏ¢",
+						JOptionPane.showMessageDialog(this,"å­¦å·æ­£ç¡®","æ¶ˆæ¯",
 	                              JOptionPane.INFORMATION_MESSAGE);
 				}
 		}}}

@@ -3,91 +3,91 @@ import java.awt.event.*;import javax.swing.table.*;
 import javax.swing.event.*;import java.sql.*;
 import java.util.*;import java.util.Date;
 public class Login extends JFrame implements ActionListener{
-    private JPanel jp=new JPanel();//´´½¨JPanel¶ÔÏó
-    private JLabel []jlArray={//´´½¨±êÇ©×é
-    	   new JLabel("ÓÃ»§IP"),new JLabel("¶Ë¿ÚºÅ"),new JLabel("ÓÃ»§Ãû"),
-    	   new JLabel("ÃÜ  Âë"),new JLabel("")
+    private JPanel jp=new JPanel();//åˆ›å»ºJPanelå¯¹è±¡
+    private JLabel []jlArray={//åˆ›å»ºæ ‡ç­¾ç»„
+    	   new JLabel("ç”¨æˆ·IP"),new JLabel("ç«¯å£å·"),new JLabel("ç”¨æˆ·å"),
+    	   new JLabel("å¯†  ç "),new JLabel("")
     };
-    private JButton[] jbArray={//´´½¨°´Å¥Êı×é
-    	new JButton("Ñ§ÉúµÇÂ¼"),new JButton("Çå¿Õ"),new JButton("¹ÜÀíÔ±µÇÂ¼")
+    private JButton[] jbArray={//åˆ›å»ºæŒ‰é’®æ•°ç»„
+    	new JButton("å­¦ç”Ÿç™»å½•"),new JButton("æ¸…ç©º"),new JButton("ç®¡ç†å‘˜ç™»å½•")
     };
-    private JTextField[] jtxtArray={ //´´½¨ÎÄ±¾¿ò
+    private JTextField[] jtxtArray={ //åˆ›å»ºæ–‡æœ¬æ¡†
     	   new JTextField("127.0.0.1"),new JTextField("3306"),new JTextField("1001")
     }; 
-    private JPasswordField jpassword=new JPasswordField("number1"); //´´½¨ÃÜÂë¿ò
+    private JPasswordField jpassword=new JPasswordField("number1"); //åˆ›å»ºå¯†ç æ¡†
     String sql;
     public Login(){
-    	  jp.setLayout(null); //ÉèÖÃJPanelµÄ²¼¾Ö¹ÜÀíÆ÷
-    	  for(int i=0;i<4;i++){ //¶Ô±êÇ©Óë°´Å¥¿Ø¼şÑ­»·´¦Àí		
-	          jlArray[i].setBounds(30,20+i*50,80,25);//ÉèÖÃ±êÇ©Óë°´Å¥µÄ´óĞ¡ºÍÎ»ÖÃ	
-	          jp.add(jlArray[i]);//½«±êÇ©ºÍ°´Å¥Ìí¼Ó½øJPanelÈİÆ÷ÖĞ
+    	  jp.setLayout(null); //è®¾ç½®JPanelçš„å¸ƒå±€ç®¡ç†å™¨
+    	  for(int i=0;i<4;i++){ //å¯¹æ ‡ç­¾ä¸æŒ‰é’®æ§ä»¶å¾ªç¯å¤„ç†		
+	          jlArray[i].setBounds(30,20+i*50,80,25);//è®¾ç½®æ ‡ç­¾ä¸æŒ‰é’®çš„å¤§å°å’Œä½ç½®	
+	          jp.add(jlArray[i]);//å°†æ ‡ç­¾å’ŒæŒ‰é’®æ·»åŠ è¿›JPanelå®¹å™¨ä¸­
           }
-          for(int i=0;i<3;i++){//ÉèÖÃ°´Å¥µÄ´óĞ¡Î»ÖÃ²¢ÎªÆäÌí¼ÓÊÂ¼ş¼àÌıÆ÷
+          for(int i=0;i<3;i++){//è®¾ç½®æŒ‰é’®çš„å¤§å°ä½ç½®å¹¶ä¸ºå…¶æ·»åŠ äº‹ä»¶ç›‘å¬å™¨
 	          jbArray[i].setBounds(10+i*120,230,100,25);
 	          jp.add(jbArray[i]);	
 	          jbArray[i].addActionListener(this);      
           }
-          for(int i=0;i<3;i++){//ÉèÖÃÎÄ±¾¿òµÄ´óĞ¡Î»ÖÃ²¢ÎªÆäÌí¼ÓÊÂ¼ş¼àÌıÆ÷
+          for(int i=0;i<3;i++){//è®¾ç½®æ–‡æœ¬æ¡†çš„å¤§å°ä½ç½®å¹¶ä¸ºå…¶æ·»åŠ äº‹ä»¶ç›‘å¬å™¨
 	          jtxtArray[i].setBounds(80,20+50*i,180,25);
 	          jp.add(jtxtArray[i]);
 	          jtxtArray[i].addActionListener(this);
           }
-          jpassword.setBounds(80,170,180,25);//ÉèÖÃÃÜÂë¿òµÄ´óĞ¡Î»ÖÃ
-          jp.add(jpassword);//½«ÃÜÂë¿òÌí¼Ó½øJPanelÈİÆ÷
-          jpassword.setEchoChar('*');//ÉèÖÃÃÜÂë¿òµÄ»ØÏÔ×Ö·û
-          jpassword.addActionListener(this);//ÎªÃÜÂë¿ò×¢²á¼àÌıÆ÷
-          jlArray[4].setBounds(10,280,300,25);//ÉèÖÃÓÃÓÚÏÔÊ¾µÇÂ¼×´Ì¬µÄ±êÇ©µÄ´óĞ¡Î»ÖÃ
-          jp.add(jlArray[4]); //½«±êÇ©Ìí¼Ó½øJPanelÈİÆ÷
+          jpassword.setBounds(80,170,180,25);//è®¾ç½®å¯†ç æ¡†çš„å¤§å°ä½ç½®
+          jp.add(jpassword);//å°†å¯†ç æ¡†æ·»åŠ è¿›JPanelå®¹å™¨
+          jpassword.setEchoChar('*');//è®¾ç½®å¯†ç æ¡†çš„å›æ˜¾å­—ç¬¦
+          jpassword.addActionListener(this);//ä¸ºå¯†ç æ¡†æ³¨å†Œç›‘å¬å™¨
+          jlArray[4].setBounds(10,280,300,25);//è®¾ç½®ç”¨äºæ˜¾ç¤ºç™»å½•çŠ¶æ€çš„æ ‡ç­¾çš„å¤§å°ä½ç½®
+          jp.add(jlArray[4]); //å°†æ ‡ç­¾æ·»åŠ è¿›JPanelå®¹å™¨
           this.add(jp);	
- 	      Image image=new ImageIcon("ico.gif").getImage();//¶ÔlogoÍ¼Æ¬½øĞĞ³õÊ¼»¯  
+ 	      Image image=new ImageIcon("ico.gif").getImage();//å¯¹logoå›¾ç‰‡è¿›è¡Œåˆå§‹åŒ–  
  	      this.setIconImage(image);
-          //ÉèÖÃ´°ÌåµÄ´óĞ¡Î»ÖÃ¼°¿É¼ûĞÔ
-          this.setTitle("µÇÂ¼");
+          //è®¾ç½®çª—ä½“çš„å¤§å°ä½ç½®åŠå¯è§æ€§
+          this.setTitle("ç™»å½•");
           this.setResizable(false);
           this.setBounds(100,100,400,350);
           this.setVisible(true);
     }
-    //ÊµÏÖActionListener½Ó¿ÚÖĞµÄ·½·¨
+    //å®ç°ActionListeneræ¥å£ä¸­çš„æ–¹æ³•
     public void actionPerformed(ActionEvent e)
-    {//ÊÂ¼şÔ´ÎªÎÄ±¾¿ò
+    {//äº‹ä»¶æºä¸ºæ–‡æœ¬æ¡†
     	String mgno=jtxtArray[2].getText().trim();
     	String mgIP=jtxtArray[0].getText().trim();
 	    String port=jtxtArray[1].getText().trim();
         String message=mgIP+":"+port;
 	    if(e.getSource()==jtxtArray[0]){
-	         jtxtArray[1].requestFocus();//ÇĞ»»ÊäÈë½¹µãµ½ÏÂÒ»¸ö¿ò
+	         jtxtArray[1].requestFocus();//åˆ‡æ¢è¾“å…¥ç„¦ç‚¹åˆ°ä¸‹ä¸€ä¸ªæ¡†
     	    }
     	    if(e.getSource()==jtxtArray[1]){
-    		   jtxtArray[2].requestFocus();//ÇĞ»»ÊäÈë½¹µãµ½ÏÂÒ»¸ö¿ò
+    		   jtxtArray[2].requestFocus();//åˆ‡æ¢è¾“å…¥ç„¦ç‚¹åˆ°ä¸‹ä¸€ä¸ªæ¡†
     	    }
     	    if(e.getSource()==jtxtArray[2])	{	   
-    		   jpassword.requestFocus();//ÇĞ»»ÊäÈë½¹µãµ½ÃÜÂë¿ò
+    		   jpassword.requestFocus();//åˆ‡æ¢è¾“å…¥ç„¦ç‚¹åˆ°å¯†ç æ¡†
     	    }
-    	    else if(e.getSource()==jbArray[1]){//ÊÂ¼şÔ´ÎªÇå¿Õ°´Å¥
-    	        //Çå¿ÕËùÓĞĞÅÏ¢
+    	    else if(e.getSource()==jbArray[1]){//äº‹ä»¶æºä¸ºæ¸…ç©ºæŒ‰é’®
+    	        //æ¸…ç©ºæ‰€æœ‰ä¿¡æ¯
     		    jlArray[4].setText("");
     		    jtxtArray[2].setText("");
     		    jpassword.setText("");
-    		    //½«ÊäÈë½¹µãÉèÖÃµ½ÎÄ±¾¿ò
+    		    //å°†è¾“å…¥ç„¦ç‚¹è®¾ç½®åˆ°æ–‡æœ¬æ¡†
     		    jtxtArray[2].requestFocus();
     	    }
-    	    else if(e.getSource()==jbArray[2]){//ÊÂ¼şÔ´Îª¹ÜÀíÔ±µÇÂ¼°´Å¥
-    	        //ÅĞ¶ÏÓÃ»§ÃûºÍÃÜÂëÊÇ·ñÆ¥Åä
+    	    else if(e.getSource()==jbArray[2]){//äº‹ä»¶æºä¸ºç®¡ç†å‘˜ç™»å½•æŒ‰é’®
+    	        //åˆ¤æ–­ç”¨æˆ·åå’Œå¯†ç æ˜¯å¦åŒ¹é…
     	        if(!mgno.matches("\\d+"))
-    	        {//Èç¹ûÓÃ»§Ãû¸ñÊ½ÊäÈëÓĞÎó
-	    	    	JOptionPane.showMessageDialog(this,"ÓÃ»§Ãû¸ñÊ½´íÎó£¡£¡£¡","ĞÅÏ¢",
+    	        {//å¦‚æœç”¨æˆ·åæ ¼å¼è¾“å…¥æœ‰è¯¯
+	    	    	JOptionPane.showMessageDialog(this,"ç”¨æˆ·åæ ¼å¼é”™è¯¯ï¼ï¼ï¼","ä¿¡æ¯",
 	    	    						JOptionPane.INFORMATION_MESSAGE);
 	    	    	return;
 	    	    }
 	    	    if(jtxtArray[0].getText().trim().equals(""))
-	    	    {//Èç¹û"ÓÃ»§IP"ÎÄ±¾¿òÎª¿Õ£¬ÌáÊ¾
-	    	    	JOptionPane.showMessageDialog(this,"ÓÃ»§IP²»ÄÜÎª¿Õ£¡£¡£¡","ĞÅÏ¢",
+	    	    {//å¦‚æœ"ç”¨æˆ·IP"æ–‡æœ¬æ¡†ä¸ºç©ºï¼Œæç¤º
+	    	    	JOptionPane.showMessageDialog(this,"ç”¨æˆ·IPä¸èƒ½ä¸ºç©ºï¼ï¼ï¼","ä¿¡æ¯",
 	    	    	                                JOptionPane.INFORMATION_MESSAGE);
 	    	    	return;
 	    	    }
 	    	    if(jtxtArray[1].getText().trim().equals(""))
-	    	    {//Èç¹û"¶Ë¿ÚºÅ"ÎÄ±¾¿òÎª¿Õ£¬ÌáÊ¾
-	    	     	    JOptionPane.showMessageDialog(this,"ÓÃ»§¶Ë¿ÚºÅ²»ÄÜÎª¿Õ£¡£¡£¡","ĞÅÏ¢",
+	    	    {//å¦‚æœ"ç«¯å£å·"æ–‡æœ¬æ¡†ä¸ºç©ºï¼Œæç¤º
+	    	     	    JOptionPane.showMessageDialog(this,"ç”¨æˆ·ç«¯å£å·ä¸èƒ½ä¸ºç©ºï¼ï¼ï¼","ä¿¡æ¯",
 	    	     	    						JOptionPane.INFORMATION_MESSAGE);
 	    	    	    return;
 		    	}
@@ -95,37 +95,37 @@ public class Login extends JFrame implements ActionListener{
 	            try{
 					String mgNo="";
 					String password="";
-					jlArray[4].setText("¹§Ï²Äú£¬µÇÂ¼³É¹¦£¡£¡£¡");
+					jlArray[4].setText("æ­å–œæ‚¨ï¼Œç™»å½•æˆåŠŸï¼ï¼ï¼");
 		    			new Root(mgNo);
 		    			this.dispose();  		    	 
 			    		 	
 		        }
 	            catch(Exception e1){e1.printStackTrace();}
 		                    }
-	    	else if(e.getSource()==jbArray[0]){//ÊÂ¼şÔ´ÎªÑ§ÉúµÇÂ¼°´Å¥
+	    	else if(e.getSource()==jbArray[0]){//äº‹ä»¶æºä¸ºå­¦ç”Ÿç™»å½•æŒ‰é’®
 	    	     if(!jtxtArray[2].getText().trim().matches("\\d+")){
-					//ÈôÑ§ºÅ¸ñÊ½´íÎó£¬Êä³öÌáÊ¾¶Ô»°¿ò
-					JOptionPane.showMessageDialog(this,"ÊäÈëÓĞÎó,Ñ§ºÅÖ»ÄÜÎªÊı×Ö!!!",
-									"ÏûÏ¢", JOptionPane.INFORMATION_MESSAGE);
+					//è‹¥å­¦å·æ ¼å¼é”™è¯¯ï¼Œè¾“å‡ºæç¤ºå¯¹è¯æ¡†
+					JOptionPane.showMessageDialog(this,"è¾“å…¥æœ‰è¯¯,å­¦å·åªèƒ½ä¸ºæ•°å­—!!!",
+									"æ¶ˆæ¯", JOptionPane.INFORMATION_MESSAGE);
 		    		return;
 	    	     }
-	    	     if(jtxtArray[0].getText().trim().equals("")){//Èô"ÓÃ»§IP"ÎÄ±¾¿òÊäÈëÎª¿Õ£¬ÌáÊ¾
-			    	JOptionPane.showMessageDialog(this,"ÓÃ»§IP²»ÄÜÎª¿Õ£¡£¡£¡","ĞÅÏ¢",
+	    	     if(jtxtArray[0].getText().trim().equals("")){//è‹¥"ç”¨æˆ·IP"æ–‡æœ¬æ¡†è¾“å…¥ä¸ºç©ºï¼Œæç¤º
+			    	JOptionPane.showMessageDialog(this,"ç”¨æˆ·IPä¸èƒ½ä¸ºç©ºï¼ï¼ï¼","ä¿¡æ¯",
 			    						JOptionPane.INFORMATION_MESSAGE);
 			    	return;
 	    	     }
-	    	     if(jtxtArray[1].getText().trim().equals("")){//Èô"¶Ë¿ÚºÅ"ÎÄ±¾¿òÊäÈëÎª¿Õ£¬ÌáÊ¾
-		    	    	JOptionPane.showMessageDialog(this,"ÓÃ»§¶Ë¿ÚºÅ²»ÄÜÎª¿Õ£¡£¡£¡",
-		    	    				"ĞÅÏ¢",JOptionPane.INFORMATION_MESSAGE);
+	    	     if(jtxtArray[1].getText().trim().equals("")){//è‹¥"ç«¯å£å·"æ–‡æœ¬æ¡†è¾“å…¥ä¸ºç©ºï¼Œæç¤º
+		    	    	JOptionPane.showMessageDialog(this,"ç”¨æˆ·ç«¯å£å·ä¸èƒ½ä¸ºç©ºï¼ï¼ï¼",
+		    	    				"ä¿¡æ¯",JOptionPane.INFORMATION_MESSAGE);
 		    	    	return;
 	    	     }
-	    	     //²éÑ¯Ñ§ºÅÎÄ±¾ÖĞËùÊäÑ§ºÅÊÇ·ñ´æÔÚÓÚSTUDENT±íÖĞ
+	    	     //æŸ¥è¯¢å­¦å·æ–‡æœ¬ä¸­æ‰€è¾“å­¦å·æ˜¯å¦å­˜åœ¨äºSTUDENTè¡¨ä¸­
 	             sql="select StuNO,Password from STUDENT where StuNO="
 	           				+Integer.parseInt(jtxtArray[2].getText().trim());
 	             try{
 						String mgNo="";
 						String password="";
-						jlArray[4].setText("¹§Ï²Äú£¬µÇÂ¼³É¹¦£¡£¡£¡");
+						jlArray[4].setText("æ­å–œæ‚¨ï¼Œç™»å½•æˆåŠŸï¼ï¼ï¼");
 			    			new StudentSystem();
 			    		this.dispose();  		    	 
 				    		 	

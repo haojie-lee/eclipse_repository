@@ -11,116 +11,116 @@ public class ReturnBook extends JPanel implements ActionListener
 	DataBase db;
 	String sql;
 	String str;
-	//´´½¨·Ö¸î·½ÏòÎªÉÏÏÂµÄJSplitePane¶ÔÏó
+	//åˆ›å»ºåˆ†å‰²æ–¹å‘ä¸ºä¸Šä¸‹çš„JSplitePaneå¯¹è±¡
     private JSplitPane jsp=new JSplitPane(JSplitPane.VERTICAL_SPLIT,true);
-    //´´½¨JPanel¶ÔÏó
+    //åˆ›å»ºJPanelå¯¹è±¡
 	private JPanel jpt=new JPanel();
 	private JPanel jpb=new JPanel();
-	//´´½¨°´Å¥Êı×é
+	//åˆ›å»ºæŒ‰é’®æ•°ç»„
 	private JButton[] jbArray=new JButton[]
 	{
-		new JButton	("¹ÒÊ§"),
-		new JButton	("¹é»¹"),
-		new JButton	("È·¶¨")
+		new JButton	("æŒ‚å¤±"),
+		new JButton	("å½’è¿˜"),
+		new JButton	("ç¡®å®š")
 	};
-	private JLabel jl=new JLabel("ÇëÊäÈëÄãµÄÑ§ºÅ:");
+	private JLabel jl=new JLabel("è¯·è¾“å…¥ä½ çš„å­¦å·:");
 
 	private JTextField jtxt=new JTextField();
 
-	//´´½¨±êÌâ
+	//åˆ›å»ºæ ‡é¢˜
 	Vector<String> head = new Vector<String>();
 	{
-		head.add("ÊéºÅ");
-		head.add("Ñ§ºÅ");
-		head.add("½èÔÄÊ±¼ä");
-		head.add("»¹ÊéÊ±¼ä");
-		head.add("ÊÇ·ñ¹ıÆÚ");
-		head.add("ÊÇ·ñÔ¤Ô¼");
+		head.add("ä¹¦å·");
+		head.add("å­¦å·");
+		head.add("å€Ÿé˜…æ—¶é—´");
+		head.add("è¿˜ä¹¦æ—¶é—´");
+		head.add("æ˜¯å¦è¿‡æœŸ");
+		head.add("æ˜¯å¦é¢„çº¦");
 	}
 	//
 	Vector<Vector> data=new Vector<Vector>();
-	//´´½¨±í¸ñÄ£ĞÍ
+	//åˆ›å»ºè¡¨æ ¼æ¨¡å‹
     DefaultTableModel dtm=new DefaultTableModel(data,head);
-    //´´½¨Jtable¶ÔÏó
+    //åˆ›å»ºJtableå¯¹è±¡
 	JTable jt=new JTable(dtm);
-	//½«JTable·â×°µ½¹ö¶¯´°¸ñ
+	//å°†JTableå°è£…åˆ°æ»šåŠ¨çª—æ ¼
 	JScrollPane jspn=new JScrollPane(jt);
 	public ReturnBook()
 	{
 		this.setLayout(new GridLayout(1,1));
-		//ÉèÖÃÕû¸öRetrunBook½çÃæÉÏÏÂ²¿·Ö¾ùÎª¿Õ²¼¾Ö¹ÜÀíÆ÷
+		//è®¾ç½®æ•´ä¸ªRetrunBookç•Œé¢ä¸Šä¸‹éƒ¨åˆ†å‡ä¸ºç©ºå¸ƒå±€ç®¡ç†å™¨
 		jpt.setLayout(null);
 		jpb.setLayout(null);
-		//ÉèÖÃLabelµÄ´óĞ¡¼°Î»ÖÃ
+		//è®¾ç½®Labelçš„å¤§å°åŠä½ç½®
            jl.setBounds(5,15,100,20);	
-		//½«JlabelÌí¼Óµ½jptÃæ°åÉÏ
+		//å°†Jlabelæ·»åŠ åˆ°jpté¢æ¿ä¸Š
 		 jpt.add(jl);
-		//ÎªJTextFieldÉèÖÃ´óĞ¡¼°Î»ÖÃ
+		//ä¸ºJTextFieldè®¾ç½®å¤§å°åŠä½ç½®
 		jtxt.setBounds(105,15,300,20);
-    	//°ÑJTextFieldÌí¼Óµ½jpt
+    	//æŠŠJTextFieldæ·»åŠ åˆ°jpt
 	     jpt.add(jtxt);
-        //ÉèÖÃJBuutonµÄ´óĞ¡¼°Î»ÖÃ
+        //è®¾ç½®JBuutonçš„å¤§å°åŠä½ç½®
 	    jbArray[0].setBounds(5,50,100,20);
         jbArray[1].setBounds(150,50,100,20);
         jbArray[2].setBounds(295,50,100,20);
-        //Ìí¼ÓJButton²¢¸øÆäÌí¼ÓÊÂ¼ş¼àÌıÆ÷
+        //æ·»åŠ JButtonå¹¶ç»™å…¶æ·»åŠ äº‹ä»¶ç›‘å¬å™¨
          for(int i=0;i<3;i++)
 		{
 			 jpt.add(jbArray[i]);
 			 jbArray[i].addActionListener(this);
 		}
 
-		//°ÑjptÉèÖÃµ½jspµÄÉÏ²¿´°¸ñ
+		//æŠŠjptè®¾ç½®åˆ°jspçš„ä¸Šéƒ¨çª—æ ¼
     	jsp.setTopComponent(jpt);
         jsp.setBottomComponent(jspn);
     	jsp.setDividerSize(4);
     	this.add(jsp);
-    	//ÉèÖÃjspÖĞ·Ö¸îÌõµÄ³õÊ¼Î»ÖÃ
+    	//è®¾ç½®jspä¸­åˆ†å‰²æ¡çš„åˆå§‹ä½ç½®
     	jsp.setDividerLocation(80);
-		//ÉèÖÃ´°ÌåµÄ´óĞ¡Î»ÖÃ¼°¿É¼ûĞÔ
+		//è®¾ç½®çª—ä½“çš„å¤§å°ä½ç½®åŠå¯è§æ€§
         this.setBounds(10,10,800,600);
         this.setVisible(true); 
    	} 
    	public void actionPerformed(ActionEvent e)
    	{
-   		if(e.getSource()==jbArray[2]){//ÊÂ¼şÔ´Îª"È·¶¨"°´Å¥
-   			if(jtxt.getText().trim().equals("")){//Ñ§ºÅÊäÈëÎª¿Õ£¬ÌáÊ¾
-   				JOptionPane.showMessageDialog(this,"ÇëÊäÈëÑ§ºÅ",
-					            "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);
+   		if(e.getSource()==jbArray[2]){//äº‹ä»¶æºä¸º"ç¡®å®š"æŒ‰é’®
+   			if(jtxt.getText().trim().equals("")){//å­¦å·è¾“å…¥ä¸ºç©ºï¼Œæç¤º
+   				JOptionPane.showMessageDialog(this,"è¯·è¾“å…¥å­¦å·",
+					            "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);
 					return;
    			}
-   			else{//¸ù¾İÑ§ºÅ½øĞĞ²éÑ¯
+   			else{//æ ¹æ®å­¦å·è¿›è¡ŒæŸ¥è¯¢
    				sql="select * from RECORD where StuNO="+jtxt.getText().trim();
 	   			db=new DataBase();
 	   			Vector<Vector> vtemp = new Vector<Vector>();
 			}
    		}
-   		if(e.getSource()==jbArray[1]){//µ±Òª¹é»¹Í¼Êé
+   		if(e.getSource()==jbArray[1]){//å½“è¦å½’è¿˜å›¾ä¹¦
    			int row=jt.getSelectedRow();
-   			if(row<0){//Èç¹ûÎ´Ñ¡ÖĞÏÂ²¿±íÖĞµÄÄ³Ğ©ÄÚÈİ£¬½øĞĞÌáÊ¾
+   			if(row<0){//å¦‚æœæœªé€‰ä¸­ä¸‹éƒ¨è¡¨ä¸­çš„æŸäº›å†…å®¹ï¼Œè¿›è¡Œæç¤º
    			
-				JOptionPane.showMessageDialog(this,"ÇëÑ¡ÔñÒª¹é»¹µÄÊé!!!","ÏûÏ¢",
+				JOptionPane.showMessageDialog(this,"è¯·é€‰æ‹©è¦å½’è¿˜çš„ä¹¦!!!","æ¶ˆæ¯",
 					                              JOptionPane.INFORMATION_MESSAGE);
 				return;
    			}
-   			str=(String)jt.getValueAt(row,0);//µÃµ½ÊéºÅ
+   			str=(String)jt.getValueAt(row,0);//å¾—åˆ°ä¹¦å·
    			int sno=Integer.parseInt((String)jt.getValueAt(row,1));
    			int bno=Integer.parseInt(str);
-   			int flag=checkTime(sno,bno);	//ÅĞ¶ÏÊÇ·ñ³¬ÆÚ
-   			if(flag==-1){//Èç¹ûÍ¼Êé³¬ÆÚ£¬Ôò½«È¡Ïû¸ÃÍ¬Ñ§µÄ½èÊéÈ¨ÏŞ
+   			int flag=checkTime(sno,bno);	//åˆ¤æ–­æ˜¯å¦è¶…æœŸ
+   			if(flag==-1){//å¦‚æœå›¾ä¹¦è¶…æœŸï¼Œåˆ™å°†å–æ¶ˆè¯¥åŒå­¦çš„å€Ÿä¹¦æƒé™
    				db=new DataBase();
-   				sql="update student set permitted='·ñ' where StuNO="+sno;
+   				sql="update student set permitted='å¦' where StuNO="+sno;
    			}
-   			if(flag==0){return;}//Èç¹ûÍ¼ÊéÎ´³¬ÆÚ£¬Ôò½øĞĞ¹é»¹²Ù×÷
+   			if(flag==0){return;}//å¦‚æœå›¾ä¹¦æœªè¶…æœŸï¼Œåˆ™è¿›è¡Œå½’è¿˜æ“ä½œ
    			sql="Delete from RECORD where BookNO="+Integer.parseInt(str);
    			db=new DataBase();
-   			sql="update book set borrowed='·ñ' where BookNO="+Integer.parseInt(str);
+   			sql="update book set borrowed='å¦' where BookNO="+Integer.parseInt(str);
    			updateTable();
    		}
-   		if(e.getSource()==jbArray[0]){//ĞèÒª¹ÒÊ§Í¼Êé
+   		if(e.getSource()==jbArray[0]){//éœ€è¦æŒ‚å¤±å›¾ä¹¦
 			int row=jt.getSelectedRow();
 			if(row<0){
-				JOptionPane.showMessageDialog(this,"ÇëÑ¡ÔñÒª¹ÒÊ§µÄÊé!!!","ÏûÏ¢",
+				JOptionPane.showMessageDialog(this,"è¯·é€‰æ‹©è¦æŒ‚å¤±çš„ä¹¦!!!","æ¶ˆæ¯",
 					                              JOptionPane.INFORMATION_MESSAGE);
 				return;
 			}
@@ -132,41 +132,41 @@ public class ReturnBook extends JPanel implements ActionListener
    	public void loseBook(int row){
 		String bname="";
 		int lbno=0;
-		int bno=Integer.parseInt((String)jt.getValueAt(row,0));//µÃµ½¶ªÊ§ÊéµÄÊéºÅ
-		String sno=(String)jt.getValueAt(row,1);//µÃµ½¶ªÊ§ÊéµÄÈËÑ§ºÅ
+		int bno=Integer.parseInt((String)jt.getValueAt(row,0));//å¾—åˆ°ä¸¢å¤±ä¹¦çš„ä¹¦å·
+		String sno=(String)jt.getValueAt(row,1);//å¾—åˆ°ä¸¢å¤±ä¹¦çš„äººå­¦å·
 		sql="select BookName from BOOK where BookNO="+bno;
 		db=new DataBase();
 		
-		//ÕÒµ½×î´óµÄ¶ªÊ§¼ÇÂ¼ºÅ
+		//æ‰¾åˆ°æœ€å¤§çš„ä¸¢å¤±è®°å½•å·
 		sql="select MAX(LbNO) from LoseBook";
-		sql="insert into LOSEBOOK values("+lbno+","+sno+","+bno+",'"+bname+"')";//Ïò¶ªÊé¼ÇÂ¼±íÖĞ²åÈë¼ÇÂ¼
-		sql="select BookNo from ORDERREPORT where BookNO="+bno;//¼ì²éÔ¤Ô¼±íÖĞÊÇ·ñÔ¤Ô¼¸ÃÊé£¬ÈôÓĞ£¬É¾³ı
-		sql="select BookNo from EXCEEDTIME where BookNO="+bno;//¼ì²é³¬ÆÚ±íÖĞÊÇ·ñÓĞ¸ÃÊé£¬ÈôÓĞ£¬É¾³ı
-		sql="delete from RECORD where BookNO="+bno;//´Ó½èÊé±íÖĞ½«¶ªÊ§Í¼ÊéµÄ¼ÇÂ¼É¾³ı
-		sql="delete from BooK where BookNo="+bno;//´ÓÍ¼Êé±íÖĞ½«¶ªÊ§µÄÊéÉ¾³ı
+		sql="insert into LOSEBOOK values("+lbno+","+sno+","+bno+",'"+bname+"')";//å‘ä¸¢ä¹¦è®°å½•è¡¨ä¸­æ’å…¥è®°å½•
+		sql="select BookNo from ORDERREPORT where BookNO="+bno;//æ£€æŸ¥é¢„çº¦è¡¨ä¸­æ˜¯å¦é¢„çº¦è¯¥ä¹¦ï¼Œè‹¥æœ‰ï¼Œåˆ é™¤
+		sql="select BookNo from EXCEEDTIME where BookNO="+bno;//æ£€æŸ¥è¶…æœŸè¡¨ä¸­æ˜¯å¦æœ‰è¯¥ä¹¦ï¼Œè‹¥æœ‰ï¼Œåˆ é™¤
+		sql="delete from RECORD where BookNO="+bno;//ä»å€Ÿä¹¦è¡¨ä¸­å°†ä¸¢å¤±å›¾ä¹¦çš„è®°å½•åˆ é™¤
+		sql="delete from BooK where BookNo="+bno;//ä»å›¾ä¹¦è¡¨ä¸­å°†ä¸¢å¤±çš„ä¹¦åˆ é™¤
 		int i=0;
-		if(i>0){//ÌáÊ¾¹ÒÊ§³É¹¦
-			JOptionPane.showMessageDialog(this,"¹§Ï²Äã£¬¹ÒÊ§³É¹¦!!!","ÏûÏ¢",
+		if(i>0){//æç¤ºæŒ‚å¤±æˆåŠŸ
+			JOptionPane.showMessageDialog(this,"æ­å–œä½ ï¼ŒæŒ‚å¤±æˆåŠŸ!!!","æ¶ˆæ¯",
 				                           JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
-		else{//ÌáÊ¾¹ÒÊ§Ê§°Ü
-			JOptionPane.showMessageDialog(this,"¶Ô²»Æğ£¬¹ÒÊ§Ê§°Ü!!!",
-					   	"ĞÅÏ¢",JOptionPane.INFORMATION_MESSAGE);
+		else{//æç¤ºæŒ‚å¤±å¤±è´¥
+			JOptionPane.showMessageDialog(this,"å¯¹ä¸èµ·ï¼ŒæŒ‚å¤±å¤±è´¥!!!",
+					   	"ä¿¡æ¯",JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
    	}	
-   	public void updateTable(){//ÊµÏÖ½çÃæÏÂ²¿±í¸ñµÄ¸üĞÂ
+   	public void updateTable(){//å®ç°ç•Œé¢ä¸‹éƒ¨è¡¨æ ¼çš„æ›´æ–°
 		sql="select * from RECORD where StuNO="+jtxt.getText().trim();
 		db=new DataBase();
 		Vector<Vector> vtemp = new Vector<Vector>();
 		jt.clearSelection();			
-		dtm.setDataVector(vtemp,head);//¸üĞÂtable	
+		dtm.setDataVector(vtemp,head);//æ›´æ–°table	
 		jt.updateUI();
 		jt.repaint();   		
    	}	
    	public int checkTime(int sno,int bno)
-   	{//-1´ú±í³¬ÆÚÃ»½»·£¿î  0´ú±íµ±Ìì½èµÄÊé   1´ú±íÕı³£»¹µÄÊé  -2±íÊ¾³¬ÆÚ½»·£¿î
+   	{//-1ä»£è¡¨è¶…æœŸæ²¡äº¤ç½šæ¬¾  0ä»£è¡¨å½“å¤©å€Ÿçš„ä¹¦   1ä»£è¡¨æ­£å¸¸è¿˜çš„ä¹¦  -2è¡¨ç¤ºè¶…æœŸäº¤ç½šæ¬¾
    		int day=0;
    		int flag=0;
    		String bname="";
@@ -174,35 +174,35 @@ public class ReturnBook extends JPanel implements ActionListener
    		String returntime="";
    		sql="select ReturnTime from RECORD where StuNO="+sno+" and BookNO="+bno;
    		db=new DataBase();
-   		String[] strday=returntime.split("\\.");//ÕâÀïÊ¹ÓÃÁË¼òµ¥µÄÕıÔòÊ½£¬¹æ¶¨ÁËÊ±¼äµÄ¸ñÊ½
+   		String[] strday=returntime.split("\\.");//è¿™é‡Œä½¿ç”¨äº†ç®€å•çš„æ­£åˆ™å¼ï¼Œè§„å®šäº†æ—¶é—´çš„æ ¼å¼
 		int ryear=Integer.parseInt(strday[0].trim());
 		int rmonth=Integer.parseInt(strday[1].trim());
 		int rday=Integer.parseInt(strday[2].trim());
 		day=(now.getYear()+1900-ryear)*365+(now.getMonth()+1-rmonth)*30+(now.getDate()-rday);
 		if(day==-30)
-		{//±íÊ¾µ±Ìì½èµÄÊé
-			JOptionPane.showMessageDialog(this,"½ñÌì½èµÄÊé²»ÄÜ»¹£¡£¡£¡",
-								"ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);
+		{//è¡¨ç¤ºå½“å¤©å€Ÿçš„ä¹¦
+			JOptionPane.showMessageDialog(this,"ä»Šå¤©å€Ÿçš„ä¹¦ä¸èƒ½è¿˜ï¼ï¼ï¼",
+								"æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);
 			flag=0;
 		}
 		else if(day>0)
-		{//´ú±í³¬ÆÚÁË
-			int i=JOptionPane.showConfirmDialog(this,"¸ÃÊéÒÑ¹ıÆÚ,Ó¦½»·£¿îÎª"
-			             +day*0.1+"Ôª,ÊÇ·ñ½ÉÄÉ·£¿î?","ÏûÏ¢",JOptionPane.YES_NO_OPTION);
+		{//ä»£è¡¨è¶…æœŸäº†
+			int i=JOptionPane.showConfirmDialog(this,"è¯¥ä¹¦å·²è¿‡æœŸ,åº”äº¤ç½šæ¬¾ä¸º"
+			             +day*0.1+"å…ƒ,æ˜¯å¦ç¼´çº³ç½šæ¬¾?","æ¶ˆæ¯",JOptionPane.YES_NO_OPTION);
 			if(i==JOptionPane.YES_OPTION){
-				JOptionPane.showMessageDialog(this,"ÄãÒÑ³É¹¦½»·Ñ"+day*0.1+"Ôª",
-										"ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(this,"ä½ å·²æˆåŠŸäº¤è´¹"+day*0.1+"å…ƒ",
+										"æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);
 				flag=-2;
 			}
 			else
-			{//³¬ÆÚÇÒÃ»½»·Ñ
+			{//è¶…æœŸä¸”æ²¡äº¤è´¹
 				flag=-1;
 				sql="select BookName from BOOK where BookNO="+bno;
 				sql="insert into EXCEEDTIME(StuNO,BookNO,BookName,DelayTime) values("+sno+","+bno+",'"+bname+"',"+day+")";
 			}
 		}
 		else
-		{//±íÊ¾¿ÉÒÔÕı³£¹é»¹µÄÊé
+		{//è¡¨ç¤ºå¯ä»¥æ­£å¸¸å½’è¿˜çš„ä¹¦
 			flag=1;
 		}
 		return flag;

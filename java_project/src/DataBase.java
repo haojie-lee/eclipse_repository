@@ -3,7 +3,7 @@ public class DataBase
 {
 	
 	public DataBase() {
-		System.out.println("´´½¨Êı¾İ¿â");
+		System.out.println("åˆ›å»ºæ•°æ®åº“");
 		
 	}
 	public static void main(String[] args)
@@ -25,7 +25,7 @@ public class DataBase
 				  System.out.println(bianhao+"    "+mingcheng+"     "+didian);
 			  }	
 //			  ps=ct.prepareStatement("insert into bumen values(?,?,?)");
-//			  ps.setInt(1,7);     ps.setString(2,"Õì²é");   ps.setString(3,"É½Íâ");
+//			  ps.setInt(1,7);     ps.setString(2,"ä¾¦æŸ¥");   ps.setString(3,"å±±å¤–");
 			  rs=ps.executeQuery();			  
 		} catch (Exception e){
 			

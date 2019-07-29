@@ -14,13 +14,13 @@ public class BookManage extends JPanel implements ActionListener
 	DataBase db;
 	private JLabel[] jlArray=new JLabel[]
 	{
-		new JLabel("         Êé    ºÅ"),
-		new JLabel("         Êé    Ãû"),
-		new JLabel("         ×÷    Õß"),
-		new JLabel("         ³ö °æ Éç"),
-		new JLabel("         ¹ºÂòÈÕÆÚ"),
-		new JLabel("         ÒÑ Ô¤ Ô¼"),
-		new JLabel("         ÒÑ ½è ÔÄ")
+		new JLabel("         ä¹¦    å·"),
+		new JLabel("         ä¹¦    å"),
+		new JLabel("         ä½œ    è€…"),
+		new JLabel("         å‡º ç‰ˆ ç¤¾"),
+		new JLabel("         è´­ä¹°æ—¥æœŸ"),
+		new JLabel("         å·² é¢„ çº¦"),
+		new JLabel("         å·² å€Ÿ é˜…")
 	};
 	private JTextField[] jtxtArray=new JTextField[]
 	{
@@ -30,46 +30,46 @@ public class BookManage extends JPanel implements ActionListener
 		new JTextField(),
 		new JTextField()
 	};
-	//ÉèÖÃJButton°´Å¥µÄÎÄ±¾
+	//è®¾ç½®JButtonæŒ‰é’®çš„æ–‡æœ¬
 	private JButton[] jbArray=
 	{
-	    new JButton("Í¼ÊéÈë¿â"),
-	    new JButton("É¾³ıÍ¼Êé"),
-	    new JButton("ĞŞ¸ÄÍ¼Êé¼ÇÂ¼"),
-	    new JButton("²éÕÒÍ¼Êé")
+	    new JButton("å›¾ä¹¦å…¥åº“"),
+	    new JButton("åˆ é™¤å›¾ä¹¦"),
+	    new JButton("ä¿®æ”¹å›¾ä¹¦è®°å½•"),
+	    new JButton("æŸ¥æ‰¾å›¾ä¹¦")
 	};
-	//´´½¨±êÌâ
+	//åˆ›å»ºæ ‡é¢˜
 	Vector<String> head = new Vector<String>();
 	{
-		head.add("ÊéºÅ");
-		head.add("ÊéÃû");
-		head.add("×÷Õß");
-		head.add("³ö°æÉç");
-		head.add("¹ºÂòÈÕÆÚ");
-		head.add("ÊÇ·ñ½èÔÄ");
-		head.add("ÊÇ·ñÔ¤Ô¼");
+		head.add("ä¹¦å·");
+		head.add("ä¹¦å");
+		head.add("ä½œè€…");
+		head.add("å‡ºç‰ˆç¤¾");
+		head.add("è´­ä¹°æ—¥æœŸ");
+		head.add("æ˜¯å¦å€Ÿé˜…");
+		head.add("æ˜¯å¦é¢„çº¦");
 	}
-	//ÔÚÏÂ²¿×Ó´°¿ÚÖĞÉèÖÃ±í¸ñ
+	//åœ¨ä¸‹éƒ¨å­çª—å£ä¸­è®¾ç½®è¡¨æ ¼
 	Vector<Vector> data=new Vector<Vector>();
-    //´´½¨±í¸ñÄ£ĞÍ
+    //åˆ›å»ºè¡¨æ ¼æ¨¡å‹
     DefaultTableModel dtm=new DefaultTableModel(data,head);
-    //´´½¨Jtable¶ÔÏó
+    //åˆ›å»ºJtableå¯¹è±¡
 	JTable jt=new JTable(dtm);
-	//½«JTable·â×°µ½¹ö¶¯´°¸ñ
+	//å°†JTableå°è£…åˆ°æ»šåŠ¨çª—æ ¼
 	JScrollPane jspn=new JScrollPane(jt);
-	//´´½¨±íÊ¾ÏÂÀ­ÁĞ±í¿òÊı¾İÄ£ĞÍµÄ×Ö·û´®Êı×é
-	private String[] str={"·ñ","ÊÇ"};
-	//´´½¨ÏÂÀ­ÁĞ±í¿ò
+	//åˆ›å»ºè¡¨ç¤ºä¸‹æ‹‰åˆ—è¡¨æ¡†æ•°æ®æ¨¡å‹çš„å­—ç¬¦ä¸²æ•°ç»„
+	private String[] str={"å¦","æ˜¯"};
+	//åˆ›å»ºä¸‹æ‹‰åˆ—è¡¨æ¡†
 	private JComboBox jcp1=new JComboBox(str);
 	private JComboBox jcp2=new JComboBox(str);
 	public BookManage()
 	{
 		this.setLayout(new GridLayout(1,1));
-		//ÉèÖÃÃæ°åµÄÉÏ²¿·ÖÎª¿Õ²¼¾Ö¹ÜÀíÆ÷
+		//è®¾ç½®é¢æ¿çš„ä¸Šéƒ¨åˆ†ä¸ºç©ºå¸ƒå±€ç®¡ç†å™¨
 		jpt.setLayout(null);
-		//ÉèÖÃjsptÖĞ·Ö¸îÌõµÄ³õÊ¼Î»ÖÃ
+		//è®¾ç½®jsptä¸­åˆ†å‰²æ¡çš„åˆå§‹ä½ç½®
 		jsp.setDividerLocation(140);
-		//ÉèÖÃ·Ö¸ôÌõµÄ¿í¶È
+		//è®¾ç½®åˆ†éš”æ¡çš„å®½åº¦
 		jsp.setDividerSize(4);
 		jsp.setTopComponent(jpt);
 		jsp.setBottomComponent(jspn);
@@ -103,27 +103,27 @@ public class BookManage extends JPanel implements ActionListener
 		this.add(jsp);
 		jpt.add(jcp1);
 		jpt.add(jcp2);
-		//ÉèÖÃÏÂ²¿×Ó´°¸ñ
+		//è®¾ç½®ä¸‹éƒ¨å­çª—æ ¼
     	jsp.setBottomComponent(jspn);
 		jcp1.setBounds(595,10,100,20);
 		jcp2.setBounds(595,40,100,20);
-		//½«JButtonÌí¼Ó½øjpt
+		//å°†JButtonæ·»åŠ è¿›jpt
 		for(int i=0;i<4;i++)
 		{
 			jpt.add(jbArray[i]);
 			jbArray[i].setBounds(150+112*i,100,112,25);
 		}
-		//ÉèÖÃ¼àÌıÆ÷
+		//è®¾ç½®ç›‘å¬å™¨
 		for(int i=0;i<4;i++)
 		{
 			jbArray[i].addActionListener(this);
 		}		
-		//ÉèÖÃ´°ÌåµÄ´óĞ¡Î»ÖÃ¼°¿É¼ûĞÔ
+		//è®¾ç½®çª—ä½“çš„å¤§å°ä½ç½®åŠå¯è§æ€§
 		this.setBounds(5,5,600,500);
 		this.setVisible(true);
 	}
     public void actionPerformed(ActionEvent e){
-    	//ÉèÖÃÊó±ê½¹µã
+    	//è®¾ç½®é¼ æ ‡ç„¦ç‚¹
 		if(e.getSource()==jtxtArray[0]){
 			jtxtArray[1].requestFocus();
 		}
@@ -136,31 +136,31 @@ public class BookManage extends JPanel implements ActionListener
     	if(e.getSource()==jtxtArray[3]){
     		jtxtArray[4].requestFocus();
     	}
-		if(e.getSource()==jbArray[0]){//Ìí¼ÓÍ¼Êé
+		if(e.getSource()==jbArray[0]){//æ·»åŠ å›¾ä¹¦
 			this.insertBook();
 		} 
-	    if(e.getSource()==jbArray[1]){//½«ÊéºÅÎªÊéºÅ¿òµÄÊé´ÓÊé¿âÉ¾³ı
+	    if(e.getSource()==jbArray[1]){//å°†ä¹¦å·ä¸ºä¹¦å·æ¡†çš„ä¹¦ä»ä¹¦åº“åˆ é™¤
 	    	this.deleteBook();
 	    	}	
-	    if(e.getSource()==jbArray[2]){//½«ÊéºÅÎªÊéºÅ¿òµÄÊéĞÅÏ¢½øĞĞĞŞ¸Ä
+	    if(e.getSource()==jbArray[2]){//å°†ä¹¦å·ä¸ºä¹¦å·æ¡†çš„ä¹¦ä¿¡æ¯è¿›è¡Œä¿®æ”¹
 	    	this.updateBook();
 	    }	
-	    if(e.getSource()==jbArray[3]){//²éÑ¯Í¼ÊéĞÅÏ¢
+	    if(e.getSource()==jbArray[3]){//æŸ¥è¯¢å›¾ä¹¦ä¿¡æ¯
 	    	this.searchBook();
 	    }
 	}
     public void insertBook(){
-		for(int i=0;i<5;i++){//ÉùÃ÷ÊäÈë±äÁ¿
+		for(int i=0;i<5;i++){//å£°æ˜è¾“å…¥å˜é‡
             str1[i]=jtxtArray[i].getText().trim();		
 		}
 		if(str1[0].equals("")&&str1[1].equals("")&&str1[2].equals("")
-			   &&str1[3].equals("")&&str1[4].equals("")){//µ±ÊäÈëÎª¿Õ½øĞĞÌáÊ¾
-			JOptionPane.showMessageDialog(this,	"Í¼ÊéĞÅÏ¢²»ÄÜÎª¿Õ£¡£¡£¡",
-						        "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);
+			   &&str1[3].equals("")&&str1[4].equals("")){//å½“è¾“å…¥ä¸ºç©ºè¿›è¡Œæç¤º
+			JOptionPane.showMessageDialog(this,	"å›¾ä¹¦ä¿¡æ¯ä¸èƒ½ä¸ºç©ºï¼ï¼ï¼",
+						        "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);
 	            return;	
 		}
 	    if(!str1[0].equals("")&&!str1[1].equals("")&&!str1[2].equals("")
-		   &&!str1[3].equals("")&&!str1[4].equals("")){//½«Í¼ÊéĞÅÏ¢²åÈëBook±í
+		   &&!str1[3].equals("")&&!str1[4].equals("")){//å°†å›¾ä¹¦ä¿¡æ¯æ’å…¥Bookè¡¨
 			str1[5]=jcp1.getSelectedItem().toString();
 			str1[6]=jcp2.getSelectedItem().toString();
 			sql="insert into BOOK values('"+str1[0]+"','"+str1[1]+"','"
@@ -168,11 +168,11 @@ public class BookManage extends JPanel implements ActionListener
 			            str1[4]+"','"+str1[5]+"','"+str1[6]+"')";
 			db=new DataBase();
 			Vector<String> v = new Vector<String>();
-		    for(int i=1;i<=7;i++){//½«Ã¿ÁĞÌí¼Óµ½ÁÙÊ±Êı×év
+		    for(int i=1;i<=7;i++){//å°†æ¯åˆ—æ·»åŠ åˆ°ä¸´æ—¶æ•°ç»„v
 				v.add(str1[i-1]);	
 		    }
 		    data.add(v);
-			dtm.setDataVector(data,head);//¸üĞÂtable	
+			dtm.setDataVector(data,head);//æ›´æ–°table	
 			jt.updateUI();
 			jt.repaint();
 			return;
@@ -180,9 +180,9 @@ public class BookManage extends JPanel implements ActionListener
     }		
 	public void deleteBook(){
 		String bookno = jtxtArray[0].getText().trim();
-		if(bookno.equals("")){//µ±ÊéºÅÊäÈëÎª¿Õ£¬ÌáÊ¾
-			JOptionPane.showMessageDialog(this,	"ÊéºÅ²»ÄÜÎª¿Õ£¡£¡£¡",
-						        "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);
+		if(bookno.equals("")){//å½“ä¹¦å·è¾“å…¥ä¸ºç©ºï¼Œæç¤º
+			JOptionPane.showMessageDialog(this,	"ä¹¦å·ä¸èƒ½ä¸ºç©ºï¼ï¼ï¼",
+						        "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);
 			return;			
 		}
 		sql="select * from RECORD where BookNO="+Integer.parseInt(bookno);
@@ -191,13 +191,13 @@ public class BookManage extends JPanel implements ActionListener
 	}
 	public void updateBook(){
 		String bookno = jtxtArray[0].getText().trim();
-		if(bookno.equals("")){//µ±ÊéºÅÊäÈëÎª¿ÕÊ±£¬½øĞĞÌáÊ¾
-			JOptionPane.showMessageDialog(this,	"ÇëÊäÈëĞèÒª¸ü¸ÄĞÅÏ¢Í¼ÊéµÄÊéºÅ£¡",
-						               "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);
+		if(bookno.equals("")){//å½“ä¹¦å·è¾“å…¥ä¸ºç©ºæ—¶ï¼Œè¿›è¡Œæç¤º
+			JOptionPane.showMessageDialog(this,	"è¯·è¾“å…¥éœ€è¦æ›´æ”¹ä¿¡æ¯å›¾ä¹¦çš„ä¹¦å·ï¼",
+						               "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);
 			return;			
 		}
-		else{//µ±ÊäÈëÊéºÅºóµÄÇé¿ö
-		    for(int i=0;i<5;i++){//ÉùÃ÷ÎÄ±¾¿òÊäÈëµÄ±äÁ¿
+		else{//å½“è¾“å…¥ä¹¦å·åçš„æƒ…å†µ
+		    for(int i=0;i<5;i++){//å£°æ˜æ–‡æœ¬æ¡†è¾“å…¥çš„å˜é‡
                 str1[i]=jtxtArray[i].getText().trim();		
 		    }
 			db=new DataBase();
@@ -208,119 +208,119 @@ public class BookManage extends JPanel implements ActionListener
 			if(!str1[2].equals("")){i=i+2;}
 			if(!str1[3].equals("")){i=i+4;}
 			if(!str1[4].equals("")){i=i+8;}
-			switch(i){//ÇëÏêÏ¸½â¶ÁswitchÓï¾ä
+			switch(i){//è¯·è¯¦ç»†è§£è¯»switchè¯­å¥
 				case 0:
-					JOptionPane.showMessageDialog(this,"ĞÅÏ¢²»ÄÜÎª¿Õ£¡£¡£¡",
-					                     "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(this,"ä¿¡æ¯ä¸èƒ½ä¸ºç©ºï¼ï¼ï¼",
+					                     "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);
 				break;
 				case 1:
 				sql="update BOOK set BookName='"+str1[1]+"' where BookNO="+b;
 				db=new DataBase();
 		        if(flag>0){
-					JOptionPane.showMessageDialog(this,"¹§Ï²Äã£¬ĞŞ¸Ä³É¹¦!!!",
-					                       "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);		        	
+					JOptionPane.showMessageDialog(this,"æ­å–œä½ ï¼Œä¿®æ”¹æˆåŠŸ!!!",
+					                       "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);		        	
 		        }break;
 		        case 2:
 		        sql="update BOOK set Author='"+str1[2]+"' where BookNO="+b;
 		        if(flag>0){
-					JOptionPane.showMessageDialog(this,"¹§Ï²Äã£¬ĞŞ¸Ä³É¹¦!!!",
-					                     "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);		        	
+					JOptionPane.showMessageDialog(this,"æ­å–œä½ ï¼Œä¿®æ”¹æˆåŠŸ!!!",
+					                     "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);		        	
 		        }break;
 		        case 3:
 		        sql="update BOOK set BookName='"+str1[1]+"',"+"Author='"
 		                      +str1[2]+"' where BookNO="+b;
 		        if(flag>0){
-					JOptionPane.showMessageDialog(this,"¹§Ï²Äã£¬ĞŞ¸Ä³É¹¦!!!",
-					                        "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);		        	
+					JOptionPane.showMessageDialog(this,"æ­å–œä½ ï¼Œä¿®æ”¹æˆåŠŸ!!!",
+					                        "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);		        	
 		        }break;
 		        case 4:
 		        sql="update BOOK set Publishment='"+str1[3]+"' where BookNO="+b;
 		        if(flag>0){
-					JOptionPane.showMessageDialog(this,"¹§Ï²Äã£¬ĞŞ¸Ä³É¹¦!!!",
-					                      "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);		        	
+					JOptionPane.showMessageDialog(this,"æ­å–œä½ ï¼Œä¿®æ”¹æˆåŠŸ!!!",
+					                      "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);		        	
 		        }break;
 		        case 5:
 		        sql="update BOOK set BookName='"+str1[1]+"',"+"Publishment='"
 		                        +str1[3]+"' where BookNO="+b;
 		        if(flag>0){
-					JOptionPane.showMessageDialog(this,"¹§Ï²Äã£¬ĞŞ¸Ä³É¹¦!!!",
-					                     "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);		        	
+					JOptionPane.showMessageDialog(this,"æ­å–œä½ ï¼Œä¿®æ”¹æˆåŠŸ!!!",
+					                     "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);		        	
 		        }break;
 		        case 6:
 		        sql="update BOOK set Author='"+str1[2]+"',"+"Publishment='"
 		                      +str1[3]+"' where BookNO="+b;
 		        if(flag>0){
-					JOptionPane.showMessageDialog(this,"¹§Ï²Äã£¬ĞŞ¸Ä³É¹¦!!!",
-					                       "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);		        	
+					JOptionPane.showMessageDialog(this,"æ­å–œä½ ï¼Œä¿®æ”¹æˆåŠŸ!!!",
+					                       "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);		        	
 		        }break;
 		        case 7:
 		        sql="update BOOK set BookName='"+str1[1]+"',"+"Author='"+str1[2]
 		                       +"',"+"Publishment='"+str1[3]+"' where BookNO="+b;
 		        if(flag>0){
-					JOptionPane.showMessageDialog(this,"¹§Ï²Äã£¬ĞŞ¸Ä³É¹¦!!!",
-					                      "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);		        	
+					JOptionPane.showMessageDialog(this,"æ­å–œä½ ï¼Œä¿®æ”¹æˆåŠŸ!!!",
+					                      "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);		        	
 		        }break;
 		        case 8:
 		        sql="update BOOK set BuyTime='"+str1[4]+"' where BookNO="+b;
 		        if(flag>0){
-					JOptionPane.showMessageDialog(this,"¹§Ï²Äã£¬ĞŞ¸Ä³É¹¦!!!",
-					                        "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);		        	
+					JOptionPane.showMessageDialog(this,"æ­å–œä½ ï¼Œä¿®æ”¹æˆåŠŸ!!!",
+					                        "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);		        	
 		        }break;
 		        case 9:
 		        sql="update BOOK set BookName='"+str1[1]+"',"+"BuyTime='"
 		                +str1[4]+"' where BookNO="+b;
 		        if(flag>0){
-					JOptionPane.showMessageDialog(this,"¹§Ï²Äã£¬ĞŞ¸Ä³É¹¦!!!",
-					                     "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);		        	
+					JOptionPane.showMessageDialog(this,"æ­å–œä½ ï¼Œä¿®æ”¹æˆåŠŸ!!!",
+					                     "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);		        	
 		        }break;
 		        case 10:
 		        sql="update BOOK set Author='"+str1[2]+"',"+"BuyTime='"
 		                  +str1[4]+"' where BookNO="+b;
 		        if(flag>0){
-					JOptionPane.showMessageDialog(this,"¹§Ï²Äã£¬ĞŞ¸Ä³É¹¦!!!",
-					                      "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);		        	
+					JOptionPane.showMessageDialog(this,"æ­å–œä½ ï¼Œä¿®æ”¹æˆåŠŸ!!!",
+					                      "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);		        	
 		        }break;
 		        case 11:
 		        sql="update BOOK set BookName='"+str1[1]+"',"+"Author='"+str1[2]
 		             +"',"+"BuyTime='"+str1[4]+"' where BookNO="+b;
 		        if(flag>0){
-					JOptionPane.showMessageDialog(this,"¹§Ï²Äã£¬ĞŞ¸Ä³É¹¦!!!",
-					                        "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);		        	
+					JOptionPane.showMessageDialog(this,"æ­å–œä½ ï¼Œä¿®æ”¹æˆåŠŸ!!!",
+					                        "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);		        	
 		        }break;
 		        case 12:
 		        sql="update BOOK set Publishment='"+str1[3]+"',"+"BuyTime='"
 		                        +str1[4]+"' where BookNO="+b;
 		        if(flag>0){
-					JOptionPane.showMessageDialog(this,"¹§Ï²Äã£¬ĞŞ¸Ä³É¹¦!!!",
-					                       "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);		        	
+					JOptionPane.showMessageDialog(this,"æ­å–œä½ ï¼Œä¿®æ”¹æˆåŠŸ!!!",
+					                       "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);		        	
 		        }break;
 		        case 13:
 		        sql="update BOOK set BookName='"+str1[1]+"',"+"Publishment='"+str1[3]
 		                       +"',"+"BuyTime='"+str1[4]+"' where BookNO="+b;
 		       if(flag>0){
-					JOptionPane.showMessageDialog(this,"¹§Ï²Äã£¬ĞŞ¸Ä³É¹¦!!!",
-					                      "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);		        	
+					JOptionPane.showMessageDialog(this,"æ­å–œä½ ï¼Œä¿®æ”¹æˆåŠŸ!!!",
+					                      "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);		        	
 		        }break;
 		        case 14:
 		        sql="update BOOK set Author='"+str1[1]+"',"+"Publishment='"+str1[2]
 		                        +"',"+"BuyTime='"+str1[4]+"' where BookNO="+b;
 		        if(flag>0){
-					JOptionPane.showMessageDialog(this,"¹§Ï²Äã£¬ĞŞ¸Ä³É¹¦!!!",
-					                       "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);		        	
+					JOptionPane.showMessageDialog(this,"æ­å–œä½ ï¼Œä¿®æ”¹æˆåŠŸ!!!",
+					                       "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);		        	
 		        }break;
 		        case 15:
 		        sql="update BOOK set BookName='"+str1[1]+"',"+"Author='"+str1[2]+"',"+
 		            "Publishment='"+str1[3]+"',"+"BuyTime='"+str1[4]+"' where BookNO="+b;
 		        if(flag>0){
-					JOptionPane.showMessageDialog(this,"¹§Ï²Äã£¬ĞŞ¸Ä³É¹¦!!!",
-					                              "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);		        	
+					JOptionPane.showMessageDialog(this,"æ­å–œä½ ï¼Œä¿®æ”¹æˆåŠŸ!!!",
+					                              "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);		        	
 		        }break;
 			}	
 		}
 	}
-	public void searchBook(){//µ¯³öÌáÊ¾¶Ô»°¿ò
-		JOptionPane.showMessageDialog(this,	"Çëµã»÷×ó±ß´°¿ÚµÄ '²éÑ¯Í¼Êé' °´Å¥£¡£¡",
-						        "Ç¿ÁÒÍÆ¼ö",JOptionPane.INFORMATION_MESSAGE);	
+	public void searchBook(){//å¼¹å‡ºæç¤ºå¯¹è¯æ¡†
+		JOptionPane.showMessageDialog(this,	"è¯·ç‚¹å‡»å·¦è¾¹çª—å£çš„ 'æŸ¥è¯¢å›¾ä¹¦' æŒ‰é’®ï¼ï¼",
+						        "å¼ºçƒˆæ¨è",JOptionPane.INFORMATION_MESSAGE);	
 	    return;
 	}	
 }

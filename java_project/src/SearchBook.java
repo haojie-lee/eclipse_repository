@@ -10,169 +10,169 @@ public class SearchBook extends JPanel implements ActionListener{
 	int flag;
 	String sql;
 	DataBase db;
-   //´´½¨·Ö¸î·½ÏòÎªÉÏÏÂµÄJSplitePane¶ÔÏó
+   //åˆ›å»ºåˆ†å‰²æ–¹å‘ä¸ºä¸Šä¸‹çš„JSplitePaneå¯¹è±¡
     private JSplitPane jsp=new JSplitPane(JSplitPane.VERTICAL_SPLIT,true);
-	private JPanel jpt=new JPanel();//´´½¨JPanel¶ÔÏó
+	private JPanel jpt=new JPanel();//åˆ›å»ºJPanelå¯¹è±¡
 	private JPanel jpb=new JPanel();
-	//´´½¨±íÊ¾ÏÂÀ­ÁĞ±í¿òÊı¾İÄ£ĞÍµÄ×Ö·û´®Êı×é
-	private String[] str={"ÊéÃû","³ö°æÉç","×÷Õß","¹ºÂòÊ±¼ä"};
-	private JComboBox jcb=new JComboBox(str);//´´½¨ÏÂÀ­ÁĞ±í¿ò
-	private JButton jb=new JButton("Ìá½»");	//´´½¨°´Å¥
+	//åˆ›å»ºè¡¨ç¤ºä¸‹æ‹‰åˆ—è¡¨æ¡†æ•°æ®æ¨¡å‹çš„å­—ç¬¦ä¸²æ•°ç»„
+	private String[] str={"ä¹¦å","å‡ºç‰ˆç¤¾","ä½œè€…","è´­ä¹°æ—¶é—´"};
+	private JComboBox jcb=new JComboBox(str);//åˆ›å»ºä¸‹æ‹‰åˆ—è¡¨æ¡†
+	private JButton jb=new JButton("æäº¤");	//åˆ›å»ºæŒ‰é’®
 	private JLabel[] jlArray=new JLabel[]{
-		new JLabel("       Êé    Ãû"),
-		new JLabel("     ×÷    Õß"),
-		new JLabel("³ö°æÉç")
+		new JLabel("       ä¹¦    å"),
+		new JLabel("     ä½œ    è€…"),
+		new JLabel("å‡ºç‰ˆç¤¾")
 	};	
-	private JTextField[] jtxtArray=new JTextField[]{//´´½¨ÎÄ±¾¿ò
+	private JTextField[] jtxtArray=new JTextField[]{//åˆ›å»ºæ–‡æœ¬æ¡†
 		new JTextField(),new JTextField(),
 	    new JTextField(),new JTextField()
 	};
-	private JRadioButton[] jrbArray={//´´½¨µ¥Ñ¡°´Å¥
-		new JRadioButton("¼òµ¥²éÑ¯",true),
-		new JRadioButton("¸ß¼¶²éÑ¯")
+	private JRadioButton[] jrbArray={//åˆ›å»ºå•é€‰æŒ‰é’®
+		new JRadioButton("ç®€å•æŸ¥è¯¢",true),
+		new JRadioButton("é«˜çº§æŸ¥è¯¢")
 	};	
-	private ButtonGroup bg=new ButtonGroup();//´´½¨°´Å¥×é
+	private ButtonGroup bg=new ButtonGroup();//åˆ›å»ºæŒ‰é’®ç»„
 	Vector<String> head = new Vector<String>();
-	{//¶¨Òå±íÍ·
-		head.add("ÊéºÅ");head.add("ÊéÃû");
-		head.add("×÷Õß");head.add("³ö°æÉç");
-		head.add("¹º½øÊ±¼ä");head.add("ÊÇ·ñ½èÔÄ");
-		head.add("ÊÇ·ñÔ¤Ô¼");
+	{//å®šä¹‰è¡¨å¤´
+		head.add("ä¹¦å·");head.add("ä¹¦å");
+		head.add("ä½œè€…");head.add("å‡ºç‰ˆç¤¾");
+		head.add("è´­è¿›æ—¶é—´");head.add("æ˜¯å¦å€Ÿé˜…");
+		head.add("æ˜¯å¦é¢„çº¦");
 	}
-	Vector<Vector> data=new Vector<Vector>();//¶¨Òå¼ìË÷³öµÄÊéµÄ»ù±¾ĞÅÏ¢
-    DefaultTableModel dtm=new DefaultTableModel(data,head);	//´´½¨±í¸ñÄ£ĞÍ
-	JTable jt=new JTable(dtm); //´´½¨Jtable¶ÔÏó
-	JScrollPane jspn=new JScrollPane(jt);//½«JTable·â×°µ½¹ö¶¯´°¸ñ
+	Vector<Vector> data=new Vector<Vector>();//å®šä¹‰æ£€ç´¢å‡ºçš„ä¹¦çš„åŸºæœ¬ä¿¡æ¯
+    DefaultTableModel dtm=new DefaultTableModel(data,head);	//åˆ›å»ºè¡¨æ ¼æ¨¡å‹
+	JTable jt=new JTable(dtm); //åˆ›å»ºJtableå¯¹è±¡
+	JScrollPane jspn=new JScrollPane(jt);//å°†JTableå°è£…åˆ°æ»šåŠ¨çª—æ ¼
 	public SearchBook(){
-		this.setLayout(new GridLayout(1,1));//ÉèÖÃ²éÑ¯Í¼Êé½çÃæÎªÍø¸ñ²¼¾Ö
-		//ÉèÖÃÕû¸öRetrunBook½çÃæÉÏÏÂ²¿·Ö¾ùÎª¿Õ²¼¾Ö¹ÜÀíÆ÷
+		this.setLayout(new GridLayout(1,1));//è®¾ç½®æŸ¥è¯¢å›¾ä¹¦ç•Œé¢ä¸ºç½‘æ ¼å¸ƒå±€
+		//è®¾ç½®æ•´ä¸ªRetrunBookç•Œé¢ä¸Šä¸‹éƒ¨åˆ†å‡ä¸ºç©ºå¸ƒå±€ç®¡ç†å™¨
 		jpt.setLayout(null);
 		jpb.setLayout(null);
-		//ÉèÖÃµ¥Ñ¡¿òµÄ´óĞ¡¡¢Î»ÖÃ£¬²¢Ìí¼ÓÊÂ¼ş¼àÌıÆ÷
+		//è®¾ç½®å•é€‰æ¡†çš„å¤§å°ã€ä½ç½®ï¼Œå¹¶æ·»åŠ äº‹ä»¶ç›‘å¬å™¨
 		jpt.add(jcb);
 		jcb.setBounds(160,20,150,20);	
 	    jcb.addActionListener(this);
-        //Ìí¼ÓJButtonÉèÖÃÆä´óĞ¡Î»ÖÃ²¢Ìí¼ÓÊÂ¼ş¼àÌıÆ÷
+        //æ·»åŠ JButtonè®¾ç½®å…¶å¤§å°ä½ç½®å¹¶æ·»åŠ äº‹ä»¶ç›‘å¬å™¨
 		jpt.add(jb);
 		jb.setBounds(560,20,120,20);
 		jb.addActionListener(this);
-		for(int i=0;i<2;i++){//¶Ôµ¥Ñ¡°´Å¥½øĞĞÉèÖÃ
+		for(int i=0;i<2;i++){//å¯¹å•é€‰æŒ‰é’®è¿›è¡Œè®¾ç½®
 			jrbArray[i].setBounds(20,20+i*40,100,20);
 			jpt.add(jrbArray[i]);
 			jrbArray[i].addActionListener(this);
 			bg.add(jrbArray[i]);
 		}
-		for(int i=0;i<3;i++){//ÉèÖÃ±êÇ©ºÍÎÄ±¾¿òµÄ×ø±ê£¬²¢½«ÆäÌí¼Ó½øJPanel
+		for(int i=0;i<3;i++){//è®¾ç½®æ ‡ç­¾å’Œæ–‡æœ¬æ¡†çš„åæ ‡ï¼Œå¹¶å°†å…¶æ·»åŠ è¿›JPanel
 			jlArray[i].setBounds(120+i*200,60,80,20);
 			jtxtArray[i].setBounds(200+i*180,60,120,20);
 			jpt.add(jtxtArray[i]);	
 			jpt.add(jlArray[i]);
 		}
-		for(int i=0;i<3;i++){//ÉèÖÃÎÄ±¾¿òÎª²»¿ÉÓÃ
+		for(int i=0;i<3;i++){//è®¾ç½®æ–‡æœ¬æ¡†ä¸ºä¸å¯ç”¨
 			jtxtArray[i].setEditable(false);
 		}
-    	//ÉèÖÃÎÄ±¾¿òµÄ×ø±ê,²¢Ìí¼Ó½øjpt
+    	//è®¾ç½®æ–‡æœ¬æ¡†çš„åæ ‡,å¹¶æ·»åŠ è¿›jpt
 		jtxtArray[3].setBounds(350,20,120,20);
 		jpt.add(jtxtArray[3]);
-        jsp.setTopComponent(jpt);//°ÑjptÉèÖÃµ½jspµÄÉÏ²¿´°¸ñ
+        jsp.setTopComponent(jpt);//æŠŠjptè®¾ç½®åˆ°jspçš„ä¸Šéƒ¨çª—æ ¼
         jsp.setBottomComponent(jspn);
         jsp.setDividerSize(4);
        	this.add(jsp);
-    	jsp.setDividerLocation(100);//ÉèÖÃjspÖĞ·Ö¸îÌõµÄ³õÊ¼Î»ÖÃ
-		//ÉèÖÃ´°ÌåµÄ´óĞ¡Î»ÖÃ¼°¿É¼ûĞÔ
+    	jsp.setDividerLocation(100);//è®¾ç½®jspä¸­åˆ†å‰²æ¡çš„åˆå§‹ä½ç½®
+		//è®¾ç½®çª—ä½“çš„å¤§å°ä½ç½®åŠå¯è§æ€§
         this.setBounds(3,10,600,400);
         this.setVisible(true);
 	}
-    //ÎªÊÂ¼ş¼ÓÔØµÄ¼àÌıÆ÷¼ÓÉÏ´¦ÀíÊÂ¼ş
+    //ä¸ºäº‹ä»¶åŠ è½½çš„ç›‘å¬å™¨åŠ ä¸Šå¤„ç†äº‹ä»¶
 	public void actionPerformed(ActionEvent e){
-        if(jrbArray[0].isSelected()){//"¼òµ¥²éÑ¯"µ¥Ñ¡°´Å¥±»Ñ¡ÖĞ
+        if(jrbArray[0].isSelected()){//"ç®€å•æŸ¥è¯¢"å•é€‰æŒ‰é’®è¢«é€‰ä¸­
         	jtxtArray[3].setEditable(true);
-        	for(int i=0;i<jtxtArray.length-1;i++){//ÉèÖÃÎÄ±¾¿òÎª²»¿É±à¼­
+        	for(int i=0;i<jtxtArray.length-1;i++){//è®¾ç½®æ–‡æœ¬æ¡†ä¸ºä¸å¯ç¼–è¾‘
         		jtxtArray[i].setEditable(false);
         	}
         	if(jcb.getSelectedIndex()>=0&&jcb.getSelectedIndex()<4){
 		    	jtxtArray[3].requestFocus();	    
-			    if(e.getSource()==jb){//Èç¹ûÊÂ¼şÔ´Îª"Ìá½»"°´Å¥£¬ÔòÖ´ĞĞ¼ìË÷
+			    if(e.getSource()==jb){//å¦‚æœäº‹ä»¶æºä¸º"æäº¤"æŒ‰é’®ï¼Œåˆ™æ‰§è¡Œæ£€ç´¢
 					String str=jtxtArray[3].getText().trim();
 					if(str.equals("")){
-						JOptionPane.showMessageDialog(this,"ÇëÊäÈë±ØÒªµÄĞÅÏ¢£¡£¡£¡",
-										"ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(this,"è¯·è¾“å…¥å¿…è¦çš„ä¿¡æ¯ï¼ï¼ï¼",
+										"æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);
 						return;
 					}
-				    if(jcb.getSelectedIndex()==0){//¸ù¾İÊéÃû½øĞĞ²éÑ¯
+				    if(jcb.getSelectedIndex()==0){//æ ¹æ®ä¹¦åè¿›è¡ŒæŸ¥è¯¢
 						sql="select * from BOOK where BookName='"+str+"'";
 			        	jtxtArray[3].setText("");
 					}
-					else if(jcb.getSelectedIndex()==1){//¸ù¾İ³ö°æÉç½øĞĞ²éÑ¯
+					else if(jcb.getSelectedIndex()==1){//æ ¹æ®å‡ºç‰ˆç¤¾è¿›è¡ŒæŸ¥è¯¢
 						sql="select * from BOOK where Publishment='"+str+"'";
 						jtxtArray[3].setText("");
 					}
-					else if(jcb.getSelectedIndex()==2){//¸ù¾İ×÷Õß½øĞĞ²éÑ¯
+					else if(jcb.getSelectedIndex()==2){//æ ¹æ®ä½œè€…è¿›è¡ŒæŸ¥è¯¢
 						sql="select * from BOOK where Author='"+str+"'";
 						jtxtArray[3].setText("");
 					}
-					else{//¸ù¾İ¹º½øÊ±¼ä½øĞĞ²éÑ¯
+					else{//æ ¹æ®è´­è¿›æ—¶é—´è¿›è¡ŒæŸ¥è¯¢
 						sql="select * from BOOK where BuyTime='"+str+"'";
 						jtxtArray[3].setText("");
 					}
 					db=new DataBase();;
-					//´Ó±íÖĞ¼ìË÷³É¹¦ºó£¬°Ñ²éµ½µÄÊéµÄËùÓĞĞÅÏ¢ÏÔÊ¾ÔÚ½çÃæÏÂ²¿·ÖµÄ±íÖĞ
+					//ä»è¡¨ä¸­æ£€ç´¢æˆåŠŸåï¼ŒæŠŠæŸ¥åˆ°çš„ä¹¦çš„æ‰€æœ‰ä¿¡æ¯æ˜¾ç¤ºåœ¨ç•Œé¢ä¸‹éƒ¨åˆ†çš„è¡¨ä¸­
 					Vector<Vector> vtemp = new Vector<Vector>();
 								
-					dtm.setDataVector(vtemp,head);	//¸üĞÂtable	
+					dtm.setDataVector(vtemp,head);	//æ›´æ–°table	
 					jt.updateUI();
 					jt.repaint();								
 				}
 	        }
         }
-		if(jrbArray[1].isSelected()){//"¸ß¼¶²éÑ¯"µ¥Ñ¡°´Å¥±»Ñ¡ÖĞ
-			 jtxtArray[0].requestFocus(); //»ñµÃÊäÈë½¹µã
+		if(jrbArray[1].isSelected()){//"é«˜çº§æŸ¥è¯¢"å•é€‰æŒ‰é’®è¢«é€‰ä¸­
+			 jtxtArray[0].requestFocus(); //è·å¾—è¾“å…¥ç„¦ç‚¹
 			 jtxtArray[3].setEditable(false);
-           	 for(int i=0;i<jtxtArray.length-1;i++){//½«¸ß¼¶²éÑ¯ËùÉæ¼°µÄÎÄ±¾¿òÉèÎª¿É±à¼­
+           	 for(int i=0;i<jtxtArray.length-1;i++){//å°†é«˜çº§æŸ¥è¯¢æ‰€æ¶‰åŠçš„æ–‡æœ¬æ¡†è®¾ä¸ºå¯ç¼–è¾‘
         		jtxtArray[i].setEditable(true);
         	 }
-			 if(e.getSource()==jb){//µã»÷"Ìá½»"°´Å¥
+			 if(e.getSource()==jb){//ç‚¹å‡»"æäº¤"æŒ‰é’®
 			 	int bz=this.seniorSearch();
 			 	if(bz!=0){return;}
 			 	db=new DataBase();
-				//´Ó±íÖĞ¼ìË÷³É¹¦ºó£¬°Ñ²éµ½µÄÊéµÄËùÓĞĞÅÏ¢ÏÔÊ¾ÔÚ½çÃæÏÂ²¿·ÖµÄ±íÖĞ     
+				//ä»è¡¨ä¸­æ£€ç´¢æˆåŠŸåï¼ŒæŠŠæŸ¥åˆ°çš„ä¹¦çš„æ‰€æœ‰ä¿¡æ¯æ˜¾ç¤ºåœ¨ç•Œé¢ä¸‹éƒ¨åˆ†çš„è¡¨ä¸­     
 				Vector<Vector> vtemp = new Vector<Vector>();
-				dtm.setDataVector(vtemp,head);//¸üĞÂtable
+				dtm.setDataVector(vtemp,head);//æ›´æ–°table
 				jt.updateUI();
 				jt.repaint();							
 			 } 	
 		}    
 	}
 	public int seniorSearch(){
-		int flag=0;//ÉèÖÃ±êÖ¾Î»
+		int flag=0;//è®¾ç½®æ ‡å¿—ä½
 		String str0=jtxtArray[0].getText().trim();
 		String str1=jtxtArray[1].getText().trim();
 		String str2=jtxtArray[2].getText().trim();
-		if(str0.equals("")&&str1.equals("")&&str2.equals("")){//ÎÄ±¾¿òÊäÈëÎª¿Õ
-			JOptionPane.showMessageDialog(this,"ÇëÊäÈë±ØÒªµÄĞÅÏ¢£¡£¡£¡",
-								"ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);
+		if(str0.equals("")&&str1.equals("")&&str2.equals("")){//æ–‡æœ¬æ¡†è¾“å…¥ä¸ºç©º
+			JOptionPane.showMessageDialog(this,"è¯·è¾“å…¥å¿…è¦çš„ä¿¡æ¯ï¼ï¼ï¼",
+								"æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);
 			flag++;
 		}
 		if(((!str0.equals(""))&&(str1.equals(""))&&(str2.equals("")))
 		     ||((str0.equals(""))&&(!str1.equals(""))&&(str2.equals("")))
 		     ||((str0.equals(""))&&(str1.equals(""))&&(!str2.equals("")))){
-			JOptionPane.showMessageDialog(this,"ÇëÊ¹ÓÃ¼òµ¥²éÑ¯£¡£¡£¡",
-								"ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(this,"è¯·ä½¿ç”¨ç®€å•æŸ¥è¯¢ï¼ï¼ï¼",
+								"æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);
 			flag++;
 		}
-        if((!str0.equals(""))&&(!str1.equals(""))&&(str2.equals(""))){//ÊéÃûºÍ×÷Õß×éºÏ
+        if((!str0.equals(""))&&(!str1.equals(""))&&(str2.equals(""))){//ä¹¦åå’Œä½œè€…ç»„åˆ
 			sql="select * from BOOK where BookName='"+str0+"' and Author='"+str1+"'";
 			jtxtArray[0].setText("");jtxtArray[1].setText("");
 		}
-		if((!str0.equals(""))&&(str1.equals(""))&&(!str2.equals(""))){//ÊéÃûºÍ³ö°æÉç×éºÏ
+		if((!str0.equals(""))&&(str1.equals(""))&&(!str2.equals(""))){//ä¹¦åå’Œå‡ºç‰ˆç¤¾ç»„åˆ
 			sql="select * from Book where BookName='"+str0+"' and Publishment='"+str2+"'";
 			jtxtArray[0].setText("");jtxtArray[2].setText("");
 		}
-		if((str0.equals(""))&&(!str1.equals(""))&&(!str2.equals(""))){//×÷ÕßÓë³ö°æÉç×éºÏ
+		if((str0.equals(""))&&(!str1.equals(""))&&(!str2.equals(""))){//ä½œè€…ä¸å‡ºç‰ˆç¤¾ç»„åˆ
 			sql="select * from Book where Author='"+str1+"' and Publishment='"+str2+"'";
 			jtxtArray[1].setText("");jtxtArray[2].setText("");
 		}
-		if((!str0.equals(""))&&(!str1.equals(""))&&(!str2.equals(""))){//ÈıÕß×éºÏ
+		if((!str0.equals(""))&&(!str1.equals(""))&&(!str2.equals(""))){//ä¸‰è€…ç»„åˆ
 			sql="select * from Book where BookName='"+str0
 						+"' and Publishment='"+str2+"' and Author='"+str1+"'";
 			jtxtArray[0].setText("");jtxtArray[1].setText("");jtxtArray[2].setText("");

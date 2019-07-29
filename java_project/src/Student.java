@@ -6,89 +6,89 @@ import java.sql.*;
 import java.util.*;
 import java.util.Date;
 public class Student extends JPanel implements ActionListener
-{   //´´½¨Ò»¸öÉÏÏÂ·½Ïò·Ö¸îµÄJSplitPane¶ÔÏó
+{   //åˆ›å»ºä¸€ä¸ªä¸Šä¸‹æ–¹å‘åˆ†å‰²çš„JSplitPaneå¯¹è±¡
 	private JSplitPane jsp=new JSplitPane(JSplitPane.VERTICAL_SPLIT);
 	private JPanel jpt=new JPanel();
-	String[]str1=new String[7];//ÉùÃ÷×Ö·û´®Êı×é
+	String[]str1=new String[7];//å£°æ˜å­—ç¬¦ä¸²æ•°ç»„
 	String sql;
 	DataBase db;
-	private JLabel[] jlArray=new JLabel[]{//ÉùÃ÷±êÇ©Êı×é
-		new JLabel("              Ñ§    ºÅ"),
-		new JLabel("              ĞÕ    Ãû"),
-		new JLabel("              ĞÔ    ±ğ"),
-		new JLabel("              °à    ¼¶"),
-		new JLabel("              Ôº    Ïµ"),
-	    new JLabel("              ÃÜ    Âë"),
-	    new JLabel("              ½èÊéÈ¨ÏŞ")   
+	private JLabel[] jlArray=new JLabel[]{//å£°æ˜æ ‡ç­¾æ•°ç»„
+		new JLabel("              å­¦    å·"),
+		new JLabel("              å§“    å"),
+		new JLabel("              æ€§    åˆ«"),
+		new JLabel("              ç­    çº§"),
+		new JLabel("              é™¢    ç³»"),
+	    new JLabel("              å¯†    ç "),
+	    new JLabel("              å€Ÿä¹¦æƒé™")   
 	};
-	private JTextField[] jtxtArray=new JTextField[]{//ÉùÃ÷ÎÄ±¾¿òÊı×é
+	private JTextField[] jtxtArray=new JTextField[]{//å£°æ˜æ–‡æœ¬æ¡†æ•°ç»„
 		new JTextField(),new JTextField(),
 		new JTextField(),new JTextField(),
 		new JTextField(),new JTextField()
 	};
-	private String[] str={"ÊÇ","·ñ"};//´´½¨ÏÂÀ­ÁĞ±í¿òÊı¾İÄ£ĞÍµÄ×Ö·û´®Êı×é
-	private JComboBox jcp=new JComboBox(str);//´´½¨ÏÂÀ­ÁĞ±í¿ò
-	private JButton[] jbArray={//ÉèÖÃJButton°´Å¥µÄÎÄ±¾
-	    new JButton("Ìí¼ÓÑ§ÉúĞÅÏ¢"),new JButton("É¾³ıÑ§ÉúĞÅÏ¢"),
-	    new JButton("ĞŞ¸ÄÑ§ÉúĞÅÏ¢"),new JButton("²éÕÒÑ§ÉúĞÅÏ¢")
+	private String[] str={"æ˜¯","å¦"};//åˆ›å»ºä¸‹æ‹‰åˆ—è¡¨æ¡†æ•°æ®æ¨¡å‹çš„å­—ç¬¦ä¸²æ•°ç»„
+	private JComboBox jcp=new JComboBox(str);//åˆ›å»ºä¸‹æ‹‰åˆ—è¡¨æ¡†
+	private JButton[] jbArray={//è®¾ç½®JButtonæŒ‰é’®çš„æ–‡æœ¬
+	    new JButton("æ·»åŠ å­¦ç”Ÿä¿¡æ¯"),new JButton("åˆ é™¤å­¦ç”Ÿä¿¡æ¯"),
+	    new JButton("ä¿®æ”¹å­¦ç”Ÿä¿¡æ¯"),new JButton("æŸ¥æ‰¾å­¦ç”Ÿä¿¡æ¯")
 	};
 	Vector<String> head = new Vector<String>();
-	{//´´½¨±êÌâ
-		head.add("Ñ§ºÅ");head.add("ĞÕÃû");
-		head.add("ĞÔ±ğ");head.add("°à¼¶");
-		head.add("ÔºÏµ");head.add("ÃÜÂë");
-		head.add("½èÊéÈ¨ÏŞ");
+	{//åˆ›å»ºæ ‡é¢˜
+		head.add("å­¦å·");head.add("å§“å");
+		head.add("æ€§åˆ«");head.add("ç­çº§");
+		head.add("é™¢ç³»");head.add("å¯†ç ");
+		head.add("å€Ÿä¹¦æƒé™");
 	}
-	Vector<Vector> data=new Vector<Vector>();//ÔÚÏÂ²¿×Ó´°¿ÚÖĞÉèÖÃ±í¸ñ
-    DefaultTableModel dtm=new DefaultTableModel(data,head);//´´½¨±í¸ñÄ£ĞÍ
-	JTable jt=new JTable(dtm);//´´½¨JTable¶ÔÏó
-	JScrollPane jspn=new JScrollPane(jt);//½«JTable·â×°µ½¹ö¶¯´°¸ñ
+	Vector<Vector> data=new Vector<Vector>();//åœ¨ä¸‹éƒ¨å­çª—å£ä¸­è®¾ç½®è¡¨æ ¼
+    DefaultTableModel dtm=new DefaultTableModel(data,head);//åˆ›å»ºè¡¨æ ¼æ¨¡å‹
+	JTable jt=new JTable(dtm);//åˆ›å»ºJTableå¯¹è±¡
+	JScrollPane jspn=new JScrollPane(jt);//å°†JTableå°è£…åˆ°æ»šåŠ¨çª—æ ¼
 	public Student()
 	{
-		this.setLayout(new GridLayout(1,1));//ÉùÃ÷±¾½çÃæÎªÍø¸ñ²¼¾Ö
-		jpt.setLayout(null);//ÉèÖÃÃæ°åµÄÉÏ²¿·ÖÎª¿Õ²¼¾Ö¹ÜÀíÆ÷
-		jsp.setDividerLocation(130);//ÉèÖÃjsptÖĞ·Ö¸îÌõµÄ³õÊ¼Î»ÖÃ
-		jsp.setDividerSize(4);//ÉèÖÃ·Ö¸ôÌõµÄ¿í¶È
+		this.setLayout(new GridLayout(1,1));//å£°æ˜æœ¬ç•Œé¢ä¸ºç½‘æ ¼å¸ƒå±€
+		jpt.setLayout(null);//è®¾ç½®é¢æ¿çš„ä¸Šéƒ¨åˆ†ä¸ºç©ºå¸ƒå±€ç®¡ç†å™¨
+		jsp.setDividerLocation(130);//è®¾ç½®jsptä¸­åˆ†å‰²æ¡çš„åˆå§‹ä½ç½®
+		jsp.setDividerSize(4);//è®¾ç½®åˆ†éš”æ¡çš„å®½åº¦
 		jsp.setTopComponent(jpt);
 		jsp.setBottomComponent(jspn);
-		for(int i=0;i<6;i++){//½«ÎÄ±¾¿òÌí¼Ó½øÉÏ²¿Ãæ°å
+		for(int i=0;i<6;i++){//å°†æ–‡æœ¬æ¡†æ·»åŠ è¿›ä¸Šéƒ¨é¢æ¿
 			jpt.add(jtxtArray[i]);
 		}
 		for(int i=0;i<7;i++){
 			jpt.add(jlArray[i]);
 			if(i<3)
-			{//¶Ô½çÃæÉÏµÄµÚÒ»ĞĞ±êÇ©ºÍÎÄ±¾¿ò´óĞ¡Î»ÖÃ½øĞĞÉèÖÃ
+			{//å¯¹ç•Œé¢ä¸Šçš„ç¬¬ä¸€è¡Œæ ‡ç­¾å’Œæ–‡æœ¬æ¡†å¤§å°ä½ç½®è¿›è¡Œè®¾ç½®
 			    jlArray[i].setBounds(20+i*200,10,100,20);
 			    jtxtArray[i].setBounds(120+i*200,10,120,20);
 			    jtxtArray[i].addActionListener(this);
 			}
 			else if(i>2&&i<6)
-			{//¶ÔµÚ¶şĞĞ±êÇ©ºÍÎÄ±¾¿ò´óĞ¡Î»ÖÃ½øĞĞÉèÖÃ
+			{//å¯¹ç¬¬äºŒè¡Œæ ‡ç­¾å’Œæ–‡æœ¬æ¡†å¤§å°ä½ç½®è¿›è¡Œè®¾ç½®
 				jlArray[i].setBounds(20+(i-3)*200,50,100,20);
 				jtxtArray[i].setBounds(120+(i-3)*200,50,120,20);
 				jtxtArray[i].addActionListener(this);
 			}
 			else
-			{//¶Ô×îÏÂÃæµÄÏÔÊ¾±êÇ©½øĞĞÉèÖÃ
+			{//å¯¹æœ€ä¸‹é¢çš„æ˜¾ç¤ºæ ‡ç­¾è¿›è¡Œè®¾ç½®
 				jlArray[i].setBounds(620,10,100,20);
 			}
 		}
 		this.add(jsp);
 		jpt.add(jcp);
-    	jsp.setBottomComponent(jspn);//ÉèÖÃÏÂ²¿×Ó´°¸ñ
+    	jsp.setBottomComponent(jspn);//è®¾ç½®ä¸‹éƒ¨å­çª—æ ¼
 		jcp.setBounds(720,10,100,20);
 		for(int i=0;i<4;i++)
-		{//½«JButtonÌí¼Ó½øjpt
+		{//å°†JButtonæ·»åŠ è¿›jpt
 			jpt.add(jbArray[i]);
 			jbArray[i].setBounds(170+112*i,90,112,25);
-			jbArray[i].addActionListener(this);	//ÉèÖÃ¼àÌıÆ÷
+			jbArray[i].addActionListener(this);	//è®¾ç½®ç›‘å¬å™¨
 		}		
-		//ÉèÖÃ´°ÌåµÄ´óĞ¡Î»ÖÃ¼°¿É¼ûĞÔ
+		//è®¾ç½®çª—ä½“çš„å¤§å°ä½ç½®åŠå¯è§æ€§
 		this.setBounds(5,5,600,500);
 		this.setVisible(true);
 	}
 	public void actionPerformed(ActionEvent e)
-	{//ÎªÎÄ±¾¿òÉèÖÃ½¹µã
+	{//ä¸ºæ–‡æœ¬æ¡†è®¾ç½®ç„¦ç‚¹
 		if(e.getSource()==jtxtArray[0])
     	{
     		jtxtArray[1].requestFocus();
@@ -109,41 +109,41 @@ public class Student extends JPanel implements ActionListener
     	{
     		jtxtArray[5].requestFocus();
     	}   
-	    //µ±µã»÷"Ìí¼ÓÑ§ÉúĞÅÏ¢"°´Å¥ÊÇ½«Ö´ĞĞÌí¼Ó¹¦ÄÜ£¬½«ÎÄ±¾¿òµÄÑ§ÉúĞÅÏ¢Ìí¼Ó½øSTUDENT±íÖĞ
+	    //å½“ç‚¹å‡»"æ·»åŠ å­¦ç”Ÿä¿¡æ¯"æŒ‰é’®æ˜¯å°†æ‰§è¡Œæ·»åŠ åŠŸèƒ½ï¼Œå°†æ–‡æœ¬æ¡†çš„å­¦ç”Ÿä¿¡æ¯æ·»åŠ è¿›STUDENTè¡¨ä¸­
 		if(e.getSource()==jbArray[0])
 		{
 			this.insertStudent();
 		}
-		//µ±µã»÷"É¾³ıÑ§ÉúĞÅÏ¢"°´Å¥ÊÇ½«Ö´ĞĞÉ¾³ı¹¦ÄÜ£¬½«Ñ§ºÅÎªÑ§ºÅ¿òµÄÑ§ÉúĞÅÏ¢´ÓSTUDENT±íÖĞÉ¾³ı	
+		//å½“ç‚¹å‡»"åˆ é™¤å­¦ç”Ÿä¿¡æ¯"æŒ‰é’®æ˜¯å°†æ‰§è¡Œåˆ é™¤åŠŸèƒ½ï¼Œå°†å­¦å·ä¸ºå­¦å·æ¡†çš„å­¦ç”Ÿä¿¡æ¯ä»STUDENTè¡¨ä¸­åˆ é™¤	
 		if(e.getSource()==jbArray[1])
 		{
 			this.deleteStudent();
 		}
-		//µ±µã»÷"ĞŞ¸ÄÑ§ÉúĞÅÏ¢"°´Å¥ÊÇ½«Ö´ĞĞĞŞ¸Ä¹¦ÄÜ£¬½«ĞÅÏ¢ÎªÑ§ºÅ¿òµÄÑ§ÉúĞÅÏ¢ÔÚSTUDENT±íÖĞ¸üĞÂ
+		//å½“ç‚¹å‡»"ä¿®æ”¹å­¦ç”Ÿä¿¡æ¯"æŒ‰é’®æ˜¯å°†æ‰§è¡Œä¿®æ”¹åŠŸèƒ½ï¼Œå°†ä¿¡æ¯ä¸ºå­¦å·æ¡†çš„å­¦ç”Ÿä¿¡æ¯åœ¨STUDENTè¡¨ä¸­æ›´æ–°
 		if(e.getSource()==jbArray[2])
 		{
 			this.updateStudent();
 		}
-		//µ±µã»÷"²éÕÒÑ§ÉúĞÅÏ¢"°´Å¥ÊÇ½«Ö´ĞĞ²éÕÒ¹¦ÄÜ£¬½«´ÓSTUDENT±íÖĞ²éÕÒÑ§ºÅÎªÑ§ºÅ¿òµÄÑ§ÉúĞÅÏ¢
+		//å½“ç‚¹å‡»"æŸ¥æ‰¾å­¦ç”Ÿä¿¡æ¯"æŒ‰é’®æ˜¯å°†æ‰§è¡ŒæŸ¥æ‰¾åŠŸèƒ½ï¼Œå°†ä»STUDENTè¡¨ä¸­æŸ¥æ‰¾å­¦å·ä¸ºå­¦å·æ¡†çš„å­¦ç”Ÿä¿¡æ¯
 		if(e.getSource()==jbArray[3])
 		{
 			this.searchStudent();
 		}
 	}
 	public void insertStudent(){
-        for(int i=0;i<6;i++){//ÉùÃ÷ÎÄ±¾¿òÊäÈëĞÅÏ¢
+        for(int i=0;i<6;i++){//å£°æ˜æ–‡æœ¬æ¡†è¾“å…¥ä¿¡æ¯
 			str1[i]=jtxtArray[i].getText().trim();		
 		}
     	if(str1[0].equals("")&&str1[1].equals("")&&str1[2].equals("")
 		   &&str1[3].equals("")&&str1[4].equals("")&&str1[5].equals(""))
-		{//µ±¸÷ÎÄ±¾¿òÎª¿ÕÌáÊ¾
-		  	JOptionPane.showMessageDialog(this,	"Ñ§ÉúĞÅÏ¢²»ÄÜÎª¿Õ£¡£¡£¡",
-							        "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);
+		{//å½“å„æ–‡æœ¬æ¡†ä¸ºç©ºæç¤º
+		  	JOptionPane.showMessageDialog(this,	"å­¦ç”Ÿä¿¡æ¯ä¸èƒ½ä¸ºç©ºï¼ï¼ï¼",
+							        "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);
 			return;	
 		}
 		if(!str1[0].equals("")&&!str1[1].equals("")&&!str1[2].equals("")
 		   &&!str1[3].equals("")&&!str1[4].equals("")&&!str1[5].equals(""))
-		{//µ±ÔÚÎÄ±¾¿òÊäÈëĞÅÏ¢
+		{//å½“åœ¨æ–‡æœ¬æ¡†è¾“å…¥ä¿¡æ¯
 			str1[6]=jcp.getSelectedItem().toString();
 			sql="insert into STUDENT(StuNO,StuName,StuSex,Class,Department,"
 			+"Password,Permitted) values('"+str1[0]+"','"+str1[1]+"','"
@@ -151,12 +151,12 @@ public class Student extends JPanel implements ActionListener
 			            str1[4]+"','"+str1[5]+"','"+str1[6]+"')";
 			db=new DataBase();
 			Vector<String> v = new Vector<String>();
-		    for(int i=0;i<=6;i++){//½«Ã¿ÁĞÌí¼Óµ½ÁÙÊ±Êı×év
+		    for(int i=0;i<=6;i++){//å°†æ¯åˆ—æ·»åŠ åˆ°ä¸´æ—¶æ•°ç»„v
 				v.add(str1[i]);
 				if(i<6){jtxtArray[i].setText("");}	
 		    }
 		    data.add(v);
-			dtm.setDataVector(data,head);//¸üĞÂtable²¢ÏÔÊ¾	
+			dtm.setDataVector(data,head);//æ›´æ–°tableå¹¶æ˜¾ç¤º	
 			jt.updateUI();
 			jt.repaint();
 			return;
@@ -164,9 +164,9 @@ public class Student extends JPanel implements ActionListener
     }
 	public void deleteStudent(){
 		String stuno = jtxtArray[0].getText().trim();
-		if(stuno.equals("")){//µ±Ñ§ºÅÊäÈëÎª¿ÕÌáÊ¾
-			JOptionPane.showMessageDialog(this,	"Ñ§ºÅ²»ÄÜÎª¿Õ£¡£¡£¡",
-						        "ÏûÏ¢",JOptionPane.INFORMATION_MESSAGE);
+		if(stuno.equals("")){//å½“å­¦å·è¾“å…¥ä¸ºç©ºæç¤º
+			JOptionPane.showMessageDialog(this,	"å­¦å·ä¸èƒ½ä¸ºç©ºï¼ï¼ï¼",
+						        "æ¶ˆæ¯",JOptionPane.INFORMATION_MESSAGE);
 			return;			
 		}
 		sql="select * from STUDENT where StuNO="+Integer.parseInt(stuno);
@@ -175,32 +175,32 @@ public class Student extends JPanel implements ActionListener
 	}
 	public void updateStudent(){
 		String str[]=new String[7];
-		int row = jt.getSelectedRow();//ÉùÃ÷ËùÑ¡ĞĞºÅ
-		if(row>=0){//Ñ¡ÔñÁË±í¸ñÖĞµÄÄ³ĞĞ
+		int row = jt.getSelectedRow();//å£°æ˜æ‰€é€‰è¡Œå·
+		if(row>=0){//é€‰æ‹©äº†è¡¨æ ¼ä¸­çš„æŸè¡Œ
 			for(int i=0;i<7;i++){str[i]=jt.getValueAt(row,i).toString();}
 			sql="update STUDENT set StuName='"+str[1]+"',StuSex='"+str[2]+"',Class='"
 			     +str[3]+"',Department='"+str[4]+"',Permitted='"+str[5]+"',Password='"+str[6]
 			     +"' where StuNO="+Integer.parseInt(str[0].trim());
 			db=new DataBase();
-			JOptionPane.showMessageDialog(this,"ĞŞ¸Ä³É¹¦£¡£¡",
-			                                   "ÏûÏ¢!!",JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(this,"ä¿®æ”¹æˆåŠŸï¼ï¼",
+			                                   "æ¶ˆæ¯!!",JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
-		if(row==-1){//µ±Ã»ÓĞÑ¡Ôñ¾Íµã»÷'ĞŞ¸ÄĞÅÏ¢'°´Å¥ £¬ÌáÊ¾
-			JOptionPane.showMessageDialog(this,"Çëµã»÷'²éÕÒ'°´Å¥,ÔÚÏÂ²¿¸ü¸Ä,ÔÙÑ¡ÖĞËù¸ÄĞĞ,µã»÷'ĞŞ¸ÄĞÅÏ¢'°´Å¥",
+		if(row==-1){//å½“æ²¡æœ‰é€‰æ‹©å°±ç‚¹å‡»'ä¿®æ”¹ä¿¡æ¯'æŒ‰é’® ï¼Œæç¤º
+			JOptionPane.showMessageDialog(this,"è¯·ç‚¹å‡»'æŸ¥æ‰¾'æŒ‰é’®,åœ¨ä¸‹éƒ¨æ›´æ”¹,å†é€‰ä¸­æ‰€æ”¹è¡Œ,ç‚¹å‡»'ä¿®æ”¹ä¿¡æ¯'æŒ‰é’®",
 			                               "Warning!!",JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}		
 	}
 	public void searchStudent(){
 		if(jtxtArray[0].getText().equals("")){//
-			JOptionPane.showMessageDialog(this,"ÊäÈë²»ÄÜÎª¿Õ£¬ÇëÖØĞÂÊäÈë£¡£¡£¡",
-			                              "ĞÅÏ¢",JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(this,"è¾“å…¥ä¸èƒ½ä¸ºç©ºï¼Œè¯·é‡æ–°è¾“å…¥ï¼ï¼ï¼",
+			                              "ä¿¡æ¯",JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
        	sql="select * from STUDENT where StuNO="+Integer.parseInt(jtxtArray[0].getText().trim());
         db=new DataBase();
-		try{//¶Ô½á¹û¼¯½øĞĞÒì³£´¦Àí
+		try{//å¯¹ç»“æœé›†è¿›è¡Œå¼‚å¸¸å¤„ç†
 		     int k=0;
 			 Vector<Vector> vtemp = new Vector<Vector>();
 			 
